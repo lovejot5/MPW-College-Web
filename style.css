@@ -29,6 +29,23 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #fff;
+    padding: 4px;
+    border: 1px solid var(--border-soft);
 }
 
 .logo h2 {
@@ -42,38 +59,76 @@ header {
     color: var(--text-light);
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.logo img {
-    width: 44px;
-    height: 44px;
-    object-fit: contain;
-    border-radius: 50%;
-    background: white;
-    padding: 4px;
-    border: 1px solid var(--border-soft);
-}
-
+/* ===== NAV ===== */
 header ul {
     list-style: none;
     display: flex;
     gap: 20px;
 }
 
-header a {
+.nav-link {
+    position: relative;
+    padding: 8px 10px;
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
 }
 
+/* ===== ACTIVE PAGE INDICATOR ===== */
+.nav-link.active::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    transform: translateX(-50%);
+    width: 70%;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 999px;
+}
+
+/* Hover (soft, no blue) */
+.nav-link:hover {
+    background: rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
+}
+
+/* ===== HAMBURGER BUTTON ===== */
 .menu-btn {
     display: none;
-    font-size: 26px;
+    width: 26px;
+    height: 20px;
+    position: relative;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.menu-btn span {
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: var(--text-dark);
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.menu-btn span:nth-child(1) { top: 0; }
+.menu-btn span:nth-child(2) { top: 9px; }
+.menu-btn span:nth-child(3) { top: 18px; }
+
+/* ===== HAMBURGER → CROSS ===== */
+.menu-btn.active span:nth-child(1) {
+    transform: rotate(45deg);
+    top: 9px;
+}
+
+.menu-btn.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-btn.active span:nth-child(3) {
+    transform: rotate(-45deg);
+    top: 9px;
 }
 
 /* ===== HERO ===== */
@@ -143,40 +198,40 @@ footer {
 
 /* ===== MOBILE MENU ===== */
 @media (max-width: 768px) {
-    header ul {
-        display: none;
-        position: absolute;
-        top: 65px;
-        right: 20px;
-        background: var(--bg-card);
-        flex-direction: column;
-        width: 200px;
-        padding: 15px;
-        border-radius: 12px;
-        border: 1px solid var(--border-soft);
-    }
-
     .menu-btn {
         display: block;
     }
+
+    header ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: var(--bg-card);
+        flex-direction: column;
+        width: 220px;
+        padding: 16px;
+        gap: 14px;
+        border-radius: 14px;
+        border: 1px solid var(--border-soft);
+    }
+
+    header ul.show {
+        display: flex;
+    }
+
+    /* Active underline adjustment for mobile */
+    .nav-link.active::after {
+        bottom: -4px;
+    }
 }
 
-/* ===== REMOVE MOBILE TAP / BLUE HIGHLIGHT ===== */
-.menu-btn {
+/* ===== REMOVE MOBILE BLUE / FOCUS EFFECTS ===== */
+a, button {
     -webkit-tap-highlight-color: transparent;
+}
+
+a:focus,
+button:focus {
     outline: none;
-}
-
-.menu-btn:focus,
-.menu-btn:active {
-    outline: none;
-    box-shadow: none;
-}
-
-.menu-btn {
-    transition: opacity 0.2s ease;
-}
-
-.menu-btn:active {
-    opacity: 0.6;
 }
