@@ -1,0 +1,106 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f7;
+}
+
+/* HEADER */
+header {
+    background-color: #7b0000;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-btn {
+    display: none;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+/* HERO */
+.hero {
+    background: #2c3e50;
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+/* SECTION */
+.section {
+    padding: 30px 20px;
+}
+
+.section h2 {
+    margin-bottom: 15px;
+    color: #7b0000;
+}
+
+/* NEWS */
+.news li {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 4px solid #7b0000;
+}
+
+/* CARDS */
+.cards {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+/* FOOTER */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    header ul {
+        display: none;
+        flex-direction: column;
+        background: #7b0000;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        width: 200px;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+}
