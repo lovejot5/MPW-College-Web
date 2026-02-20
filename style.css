@@ -40,6 +40,21 @@ header {
     color: var(--text-light);
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 50%;       /* MAKES IT CIRCLE */
+    border: 1px solid var(--border-soft);
+    background: white;
+}
+
 header ul {
     list-style: none;
     display: flex;
