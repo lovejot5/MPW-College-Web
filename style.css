@@ -160,3 +160,23 @@ footer {
         display: block;
     }
 }
+
+/* ===== REMOVE MOBILE TAP / BLUE HIGHLIGHT ===== */
+.menu-btn {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+}
+
+.menu-btn:focus,
+.menu-btn:active {
+    outline: none;
+    box-shadow: none;
+}
+
+.menu-btn {
+    transition: opacity 0.2s ease;
+}
+
+.menu-btn:active {
+    opacity: 0.6;
+}
