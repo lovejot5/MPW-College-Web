@@ -226,6 +226,22 @@ footer {
     }
 }
 
+/* ===== MOBILE ACTIVE LINK STYLE (NO UNDERLINE) ===== */
+@media (max-width: 768px) {
+
+    /* Remove underline stripe */
+    .nav-link.active::after {
+        display: none;
+    }
+
+    /* Highlight active item instead */
+    .nav-link.active {
+        background: var(--bg-header);
+        border-radius: 10px;
+        font-weight: 600;
+    }
+}
+
 /* ===== REMOVE MOBILE BLUE / FOCUS EFFECTS ===== */
 a, button {
     -webkit-tap-highlight-color: transparent;
@@ -234,4 +250,14 @@ a, button {
 a:focus,
 button:focus {
     outline: none;
+}
+
+@media (max-width: 768px) {
+    .nav-link {
+        padding: 10px 12px;
+    }
+
+    .nav-link:active {
+        background: rgba(0, 0, 0, 0.05);
+    }
 }
