@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Polytechnic College</title>
+    <title>Government Polytechnic College, Bathinda</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -43,10 +43,8 @@
 <!-- ================= NEWS ================= -->
 <section class="section">
     <h2>Latest News</h2>
-    <ul class="news">
-        <li>Admissions Open for Diploma Courses</li>
-        <li>Annual Prize Distribution Ceremony</li>
-        <li>Internship Opportunities for Students</li>
+    <ul class="news" id="newsList">
+        <!-- Loaded from news.json -->
     </ul>
 </section>
 
@@ -60,7 +58,7 @@
     </div>
 </section>
 
-<!-- ================= FOOTER (SAPPHIRE FLOW) ================= -->
+<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
 
     <!-- Top branding -->
@@ -70,10 +68,9 @@
         <p>Bathinda</p>
     </div>
 
-    <!-- Footer content -->
     <div class="footer-container">
 
-        <div class="footer-links">
+        <div>
             <h4>Navigation</h4>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
@@ -82,7 +79,7 @@
             <a href="contact.html">Contact</a>
         </div>
 
-        <div class="footer-links">
+        <div>
             <h4>Important Links</h4>
             <a href="#">Admissions</a>
             <a href="#">Results</a>
@@ -91,7 +88,7 @@
             <a href="#">Notices</a>
         </div>
 
-        <div class="footer-contact">
+        <div>
             <h4>Contact</h4>
             <p>Bibi Wala Road, Bathinda</p>
             <p>gpcbathinda@punjab.gov.in</p>
@@ -108,20 +105,12 @@
 
     </div>
 
-    <!-- Bottom copyright -->
     <div class="footer-bottom">
         © 2025 Government Polytechnic College, Bathinda. All rights reserved.
     </div>
 
 </footer>
 
-<!-- ================= SCRIPT ================= -->
-<script>
-function toggleMenu(btn) {
-    document.getElementById("menu").classList.toggle("show");
-    btn.classList.toggle("active");
-}
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
