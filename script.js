@@ -1,21 +1,25 @@
-function toggleMenu() {
+function toggleMenu(btn) {
     const menu = document.getElementById("menu");
-    if (menu.style.display === "flex") {
-        menu.style.display = "none";
-    } else {
-        menu.style.display = "flex";
-    }
+
+    menu.classList.toggle("show");
+    btn.classList.toggle("active");
 }
 
-function toggleMenu() {
+/* Close menu when clicking any nav link */
+document.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("menu").classList.remove("show");
+        document.getElementById("menuBtn").classList.remove("active");
+    });
+});
+
+/* Close menu when clicking outside */
+document.addEventListener("click", (e) => {
     const menu = document.getElementById("menu");
     const btn = document.getElementById("menuBtn");
 
-    if (menu.style.display === "flex") {
-        menu.style.display = "none";
-        btn.innerHTML = "☰";   // hamburger
-    } else {
-        menu.style.display = "flex";
-        btn.innerHTML = "✕";   // cross
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.remove("show");
+        btn.classList.remove("active");
     }
-}
+});
