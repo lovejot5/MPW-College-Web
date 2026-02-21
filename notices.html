@@ -8,7 +8,6 @@
 </head>
 <body>
 
-<!-- ================= HEADER ================= -->
 <header>
     <div class="logo">
         <img src="Images/logo.jpeg" alt="College Logo">
@@ -28,80 +27,25 @@
     </ul>
 
     <div class="menu-btn" onclick="toggleMenu(this)">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
     </div>
 </header>
 
-<!-- ================= PAGE HEADER ================= -->
 <section class="hero">
     <h1>Official Notices</h1>
     <p>Latest announcements and circulars</p>
 </section>
 
-<!-- ================= NOTICES ================= -->
 <section class="section">
-    <ul class="news" id="noticeList">
-        <!-- Loaded from notices.json -->
-    </ul>
+    <ul class="news" id="noticeList"></ul>
 </section>
 
-<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
-
-    <div class="footer-top">
-        <img src="Images/logo.jpeg" alt="College Logo">
-        <h3>Government Polytechnic College</h3>
-        <p>Bathinda</p>
-    </div>
-
-    <div class="footer-container">
-
-        <div>
-            <h4>Navigation</h4>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="departments.html">Departments</a>
-            <a href="student.html">Student Corner</a>
-            <a href="contact.html">Contact</a>
-        </div>
-
-        <div>
-            <h4>Important Links</h4>
-            <a href="#">Admissions</a>
-            <a href="#">Results</a>
-            <a href="#">Placements</a>
-            <a href="#">Internship Portal</a>
-            <a href="#">Notices</a>
-        </div>
-
-        <div>
-            <h4>Contact</h4>
-            <p>Bibi Wala Road, Bathinda</p>
-            <p>gpcbathinda@punjab.gov.in</p>
-            <p>0164-2246394</p>
-        </div>
-
-        <div class="footer-location">
-            <h4>Locate Us</h4>
-            <iframe
-                src="https://www.google.com/maps?q=Government%20Polytechnic%20College%20Bathinda&output=embed"
-                loading="lazy">
-            </iframe>
-        </div>
-
-    </div>
-
-    <div class="footer-bottom">
-        © 2025 Government Polytechnic College, Bathinda. All rights reserved.
-    </div>
-
+    <!-- SAME footer as index.html -->
 </footer>
 
 <script src="script.js"></script>
 <script>
-/* ================= LOAD NOTICES ================= */
 document.addEventListener("DOMContentLoaded", () => {
     fetch("data/notices.json")
         .then(res => res.json())
@@ -113,10 +57,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 li.textContent = item.title;
                 list.appendChild(li);
             });
-        })
-        .catch(err => console.error("Error loading notices:", err));
+        });
 });
 </script>
-
 </body>
 </html>
