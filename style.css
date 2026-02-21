@@ -6,8 +6,6 @@
     --accent: #c9a76d;
 
     --dark-bg: #0f1418;
-    --dark-bg-soft: #11161b;
-
     --text-dark: #2c2c2c;
     --text-light: #6b6b6b;
     --text-muted: #9aa4ad;
@@ -70,15 +68,17 @@ header ul {
     list-style: none;
     display: flex;
     gap: 18px;
-    transition: all 0.25s ease;
+}
+
+header ul li {
+    display: flex;
 }
 
 .nav-link {
-    position: relative;
-    padding: 8px 10px;
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
+    padding: 8px 12px;
     border-radius: 8px;
 }
 
@@ -86,17 +86,15 @@ header ul {
     background: rgba(0,0,0,0.05);
 }
 
-/* Desktop underline */
+/* Active underline (desktop only) */
 .nav-link.active::after {
     content: "";
-    position: absolute;
-    left: 50%;
-    bottom: -6px;
-    transform: translateX(-50%);
-    width: 70%;
-    height: 4px;
+    display: block;
+    height: 3px;
+    width: 60%;
     background: var(--accent);
     border-radius: 999px;
+    margin: 4px auto 0;
 }
 
 /* ================= HAMBURGER ================= */
@@ -113,7 +111,7 @@ header ul {
     width: 100%;
     height: 2px;
     background: var(--text-dark);
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .menu-btn span:nth-child(1){ top:0; }
@@ -134,13 +132,13 @@ header ul {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 48px 20px;
+    padding: 44px 20px;
     text-align: center;
 }
 
 .hero h1 {
     font-size: 28px;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
 .hero p {
@@ -155,10 +153,14 @@ header ul {
 }
 
 .section h2 {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
 }
 
 /* ================= NEWS ================= */
+.news {
+    list-style: none;
+}
+
 .news li {
     background: var(--bg-card);
     padding: 14px 16px;
@@ -176,7 +178,7 @@ header ul {
 
 .card {
     background: var(--bg-card);
-    padding: 22px;
+    padding: 20px;
     flex: 1;
     min-width: 220px;
     border-radius: 14px;
@@ -188,107 +190,30 @@ header ul {
 .site-footer {
     background: var(--dark-bg);
     color: var(--text-muted);
-    margin-top: 60px;
-}
-
-/* Footer top (Sapphire style) */
-.footer-top {
-    text-align: center;
-    padding: 36px 20px 20px;
-}
-
-.footer-top img {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: #fff;
-    padding: 6px;
-    margin-bottom: 12px;
-}
-
-.footer-top h3 {
-    color: #fff;
-    font-size: 18px;
-}
-
-.footer-top p {
-    font-size: 14px;
-    color: var(--text-muted);
-}
-
-/* Footer content (VERTICAL & COMPACT) */
-.footer-container {
-    max-width: 1100px;
-    margin: auto;
     padding: 28px 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-}
-
-.footer-container h4 {
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-.footer-container a {
-    display: block;
-    text-decoration: none;
-    color: var(--text-muted);
-    margin-bottom: 6px;
-    font-size: 14px;
-}
-
-.footer-container a:hover {
-    color: #fff;
-}
-
-.footer-container p {
-    font-size: 14px;
-    margin-bottom: 6px;
-}
-
-/* Map */
-.footer-location iframe {
-    width: 100%;
-    height: 160px;
-    border-radius: 12px;
-    border: none;
-    filter: grayscale(100%);
-}
-
-/* Footer bottom */
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 50px;
     text-align: center;
-    padding: 14px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
+    /* Show menu button */
     .menu-btn {
         display: block;
     }
 
-    /* Mobile menu dropdown (clean, no overlap) */
+    /* SLIDE-DOWN MENU (NOT POPUP) */
     header ul {
         display: none;
         position: absolute;
-        top: 68px;
+        top: 64px;
         left: 0;
-        right: 0;
-        margin: auto;
+        width: 100%;
         background: var(--bg-card);
         flex-direction: column;
-        width: calc(100% - 24px);
-        max-width: 360px;
-        padding: 12px;
-        border-radius: 16px;
-        border: 1px solid var(--border-soft);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        z-index: 200;
+        border-top: 1px solid var(--border-soft);
     }
 
     header ul.show {
@@ -300,10 +225,9 @@ header ul {
     }
 
     .nav-link {
-        display: block;
         width: 100%;
-        padding: 14px 18px;
-        border-radius: 12px;
+        padding: 16px 20px;
+        border-radius: 0;
     }
 
     .nav-link.active {
@@ -313,16 +237,6 @@ header ul {
 
     .nav-link.active::after {
         display: none;
-    }
-
-    /* Footer vertical */
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-
-    .footer-location iframe {
-        height: 180px;
     }
 }
 
