@@ -1,4 +1,4 @@
-/* ===== ROOT THEME ===== */
+/* ================= ROOT THEME ================= */
 :root {
     --bg-main: #f6efe6;
     --bg-card: #ffffff;
@@ -15,7 +15,7 @@
     --border-soft: #e5d8c8;
 }
 
-/* ===== RESET ===== */
+/* ================= RESET ================= */
 * {
     margin: 0;
     padding: 0;
@@ -28,7 +28,7 @@ body {
     color: var(--text-dark);
 }
 
-/* ===== HEADER ===== */
+/* ================= HEADER ================= */
 header {
     background: var(--bg-header);
     padding: 14px 20px;
@@ -40,6 +40,7 @@ header {
     z-index: 100;
 }
 
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -64,11 +65,12 @@ header {
     color: var(--text-light);
 }
 
-/* ===== NAV ===== */
+/* ================= NAV ================= */
 header ul {
     list-style: none;
     display: flex;
     gap: 18px;
+    transition: all 0.25s ease;
 }
 
 .nav-link {
@@ -80,6 +82,11 @@ header ul {
     border-radius: 8px;
 }
 
+.nav-link:hover {
+    background: rgba(0,0,0,0.05);
+}
+
+/* Desktop underline */
 .nav-link.active::after {
     content: "";
     position: absolute;
@@ -92,28 +99,7 @@ header ul {
     border-radius: 999px;
 }
 
-.nav-link:hover {
-    background: rgba(0,0,0,0.05);
-}
-
-/* ===== SECTION SPACING ===== */
-.section {
-    margin-bottom: 40px;
-}
-
-.hero {
-    margin-bottom: 30px;
-}
-
-.news li {
-    margin-bottom: 16px;
-}
-
-.cards {
-    margin-top: 10px;
-}
-
-/* ===== HAMBURGER ===== */
+/* ================= HAMBURGER ================= */
 .menu-btn {
     display: none;
     width: 26px;
@@ -146,9 +132,9 @@ header ul {
     top:9px;
 }
 
-/* ===== HERO ===== */
+/* ================= HERO ================= */
 .hero {
-    padding: 60px 20px;
+    padding: 48px 20px;
     text-align: center;
 }
 
@@ -161,36 +147,36 @@ header ul {
     color: var(--text-light);
 }
 
-/* ===== SECTIONS ===== */
+/* ================= SECTIONS ================= */
 .section {
-    padding: 60px 20px;
+    padding: 32px 20px;
     max-width: 1100px;
     margin: auto;
 }
 
 .section h2 {
-    margin-bottom: 24px;
+    margin-bottom: 20px;
 }
 
-/* ===== NEWS ===== */
+/* ================= NEWS ================= */
 .news li {
     background: var(--bg-card);
-    padding: 15px;
+    padding: 14px 16px;
     margin-bottom: 12px;
     border-radius: 10px;
     border: 1px solid var(--border-soft);
 }
 
-/* ===== CARDS ===== */
+/* ================= CARDS ================= */
 .cards {
     display: flex;
-    gap: 20px;
+    gap: 16px;
     flex-wrap: wrap;
 }
 
 .card {
     background: var(--bg-card);
-    padding: 24px;
+    padding: 22px;
     flex: 1;
     min-width: 220px;
     border-radius: 14px;
@@ -198,20 +184,17 @@ header ul {
     text-align: center;
 }
 
-/* ================================================= */
-/* ================= FOOTER ======================== */
-/* ================================================= */
-
+/* ================= FOOTER ================= */
 .site-footer {
     background: var(--dark-bg);
     color: var(--text-muted);
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
-/* Top brand (Sapphire style) */
+/* Footer top (logo center like Sapphire) */
 .footer-top {
     text-align: center;
-    padding: 40px 20px 20px;
+    padding: 36px 20px 20px;
 }
 
 .footer-top img {
@@ -233,26 +216,26 @@ header ul {
     color: var(--text-muted);
 }
 
-/* Footer grid */
+/* Footer content */
 .footer-container {
     max-width: 1100px;
     margin: auto;
-    padding: 40px 20px;
+    padding: 32px 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 40px;
+    gap: 32px;
 }
 
 .footer-container h4 {
     color: #fff;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .footer-container a {
     display: block;
     text-decoration: none;
     color: var(--text-muted);
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     font-size: 14px;
 }
 
@@ -262,7 +245,7 @@ header ul {
 
 .footer-container p {
     font-size: 14px;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 
 /* Map */
@@ -274,7 +257,7 @@ header ul {
     filter: grayscale(100%);
 }
 
-/* Bottom */
+/* Footer bottom */
 .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.08);
     text-align: center;
@@ -282,26 +265,41 @@ header ul {
     font-size: 13px;
 }
 
-header ul {
-    transition: all 0.25s ease;
-}
-
-/* ===== MOBILE ===== */
-/* ===== MOBILE MENU FULL ROW HIGHLIGHT ===== */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-    header ul {
-        width: 260px;
+    /* Menu button */
+    .menu-btn {
+        display: block;
     }
 
+    /* Mobile menu */
+    header ul {
+        display: none;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: var(--bg-card);
+        flex-direction: column;
+        width: 240px;
+        padding: 14px;
+        border-radius: 14px;
+        border: 1px solid var(--border-soft);
+    }
+
+    header ul.show {
+        display: flex;
+    }
+
+    /* Full-row highlight */
     header ul li {
         width: 100%;
     }
 
     .nav-link {
-        display: block;           /* IMPORTANT */
+        display: block;
         width: 100%;
-        padding: 14px 18px;       /* Full row padding */
+        padding: 14px 16px;
         border-radius: 12px;
     }
 
@@ -313,43 +311,11 @@ header ul {
     .nav-link.active::after {
         display: none;
     }
-}
 
-
-@media (max-width: 768px) {
-
-    .menu-btn {
-        display: block;
-    }
-
-    header ul {
-        display: none;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: var(--bg-card);
-        flex-direction: column;
-        width: 220px;
-        padding: 16px;
-        border-radius: 14px;
-        border: 1px solid var(--border-soft);
-    }
-
-    header ul.show {
-        display: flex;
-    }
-
-    .nav-link.active::after {
-        display: none;
-    }
-
-    .nav-link.active {
-        background: var(--bg-header);
-        font-weight: 600;
-    }
-
+    /* Footer vertical */
     .footer-container {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
 
     .footer-location iframe {
@@ -357,7 +323,7 @@ header ul {
     }
 }
 
-/* ===== REMOVE BLUE TAP ===== */
+/* ================= REMOVE BLUE TAP ================= */
 a, button {
     -webkit-tap-highlight-color: transparent;
 }
