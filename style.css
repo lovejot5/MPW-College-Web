@@ -149,13 +149,13 @@ header ul {
 
 /* ================= SECTIONS ================= */
 .section {
-    padding: 32px 20px;
+    padding: 28px 20px;
     max-width: 1100px;
     margin: auto;
 }
 
 .section h2 {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 }
 
 /* ================= NEWS ================= */
@@ -191,7 +191,7 @@ header ul {
     margin-top: 60px;
 }
 
-/* Footer top (logo center like Sapphire) */
+/* Footer top (Sapphire style) */
 .footer-top {
     text-align: center;
     padding: 36px 20px 20px;
@@ -216,19 +216,19 @@ header ul {
     color: var(--text-muted);
 }
 
-/* Footer content */
+/* Footer content (VERTICAL & COMPACT) */
 .footer-container {
     max-width: 1100px;
     margin: auto;
-    padding: 32px 20px;
+    padding: 28px 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
+    gap: 24px;
 }
 
 .footer-container h4 {
     color: #fff;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .footer-container a {
@@ -268,30 +268,33 @@ header ul {
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-    /* Menu button */
     .menu-btn {
         display: block;
     }
 
-    /* Mobile menu */
+    /* Mobile menu dropdown (clean, no overlap) */
     header ul {
         display: none;
         position: absolute;
-        top: 70px;
-        right: 20px;
+        top: 68px;
+        left: 0;
+        right: 0;
+        margin: auto;
         background: var(--bg-card);
         flex-direction: column;
-        width: 240px;
-        padding: 14px;
-        border-radius: 14px;
+        width: calc(100% - 24px);
+        max-width: 360px;
+        padding: 12px;
+        border-radius: 16px;
         border: 1px solid var(--border-soft);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        z-index: 200;
     }
 
     header ul.show {
         display: flex;
     }
 
-    /* Full-row highlight */
     header ul li {
         width: 100%;
     }
@@ -299,7 +302,7 @@ header ul {
     .nav-link {
         display: block;
         width: 100%;
-        padding: 14px 16px;
+        padding: 14px 18px;
         border-radius: 12px;
     }
 
@@ -315,11 +318,11 @@ header ul {
     /* Footer vertical */
     .footer-container {
         grid-template-columns: 1fr;
-        gap: 24px;
+        gap: 20px;
     }
 
     .footer-location iframe {
-        height: 200px;
+        height: 180px;
     }
 }
 
