@@ -96,6 +96,23 @@ header ul {
     background: rgba(0,0,0,0.05);
 }
 
+/* ===== SECTION SPACING ===== */
+.section {
+    margin-bottom: 40px;
+}
+
+.hero {
+    margin-bottom: 30px;
+}
+
+.news li {
+    margin-bottom: 16px;
+}
+
+.cards {
+    margin-top: 10px;
+}
+
 /* ===== HAMBURGER ===== */
 .menu-btn {
     display: none;
@@ -265,7 +282,40 @@ header ul {
     font-size: 13px;
 }
 
+header ul {
+    transition: all 0.25s ease;
+}
+
 /* ===== MOBILE ===== */
+/* ===== MOBILE MENU FULL ROW HIGHLIGHT ===== */
+@media (max-width: 768px) {
+
+    header ul {
+        width: 260px;
+    }
+
+    header ul li {
+        width: 100%;
+    }
+
+    .nav-link {
+        display: block;           /* IMPORTANT */
+        width: 100%;
+        padding: 14px 18px;       /* Full row padding */
+        border-radius: 12px;
+    }
+
+    .nav-link.active {
+        background: var(--bg-header);
+        font-weight: 600;
+    }
+
+    .nav-link.active::after {
+        display: none;
+    }
+}
+
+
 @media (max-width: 768px) {
 
     .menu-btn {
