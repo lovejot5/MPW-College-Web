@@ -29,7 +29,7 @@ body {
 /* ================= HEADER ================= */
 header {
     background: var(--bg-header);
-    padding: 12px 20px;
+    padding: 14px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -38,7 +38,6 @@ header {
     z-index: 100;
 }
 
-/* Logo */
 .logo {
     display: flex;
     align-items: center;
@@ -82,7 +81,6 @@ header ul {
     background: rgba(0,0,0,0.05);
 }
 
-/* Desktop underline */
 .nav-link.active::after {
     content: "";
     display: block;
@@ -128,7 +126,7 @@ header ul {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 36px 20px;
+    padding: 42px 20px;
     text-align: center;
 }
 
@@ -141,48 +139,65 @@ header ul {
     color: var(--text-light);
 }
 
-/* ================= SECTIONS (FIXED SPACING) ================= */
+/* ================= SECTIONS ================= */
 .section {
-    padding: 20px 20px;
     max-width: 1100px;
-    margin: 0 auto 16px;
+    margin: 0 auto 28px;
+    padding: 0 20px;
 }
 
 .section h2 {
     margin-bottom: 14px;
 }
 
-/* ================= NEWS ================= */
+/* ================= NEWS (FULL SECTION HIGHLIGHT) ================= */
 .news {
     list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
 }
 
 .news li {
     background: var(--bg-card);
-    padding: 12px 14px;
-    margin-bottom: 10px;
-    border-radius: 10px;
+    padding: 18px 18px;
+    border-radius: 14px;
     border: 1px solid var(--border-soft);
+    font-size: 15px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* ================= CARDS ================= */
+.news li:hover {
+    background: #fbf7f1;
+    transform: translateY(-1px);
+}
+
+/* ================= STUDENT CORNER (FULL CARDS) ================= */
 .cards {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 18px;
 }
 
 .card {
     background: var(--bg-card);
-    padding: 18px;
-    flex: 1;
-    min-width: 220px;
-    border-radius: 12px;
+    padding: 28px 20px;
+    border-radius: 16px;
     border: 1px solid var(--border-soft);
     text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* ================= FOOTER ================= */
+.card:hover {
+    background: #fbf7f1;
+    transform: translateY(-2px);
+}
+
+/* ================= FOOTER (UNCHANGED – GOOD ONE) ================= */
 .site-footer {
     background: var(--dark-bg);
     color: var(--text-muted);
@@ -192,12 +207,11 @@ header ul {
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
-    /* Show menu button */
     .menu-btn {
         display: block;
     }
 
-    /* ✅ RIGHT-SIDE MENU CARD (LIKE SCREENSHOT) */
+    /* SIDE MENU CARD */
     header ul {
         display: none;
         position: absolute;
@@ -206,7 +220,7 @@ header ul {
         width: 220px;
         background: var(--bg-card);
         flex-direction: column;
-        padding: 10px;
+        padding: 12px;
         border-radius: 14px;
         border: 1px solid var(--border-soft);
         box-shadow: 0 12px 30px rgba(0,0,0,0.15);
@@ -218,7 +232,7 @@ header ul {
 
     .nav-link {
         width: 100%;
-        padding: 12px 14px;
+        padding: 14px 14px;
         border-radius: 10px;
     }
 
