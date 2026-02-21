@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Government Polytechnic College, Bathinda</title>
+    <title>Government Polytechnic College</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
+<!-- ================= HEADER ================= -->
 <header>
     <div class="logo">
         <img src="Images/logo.jpeg" alt="College Logo">
@@ -27,20 +27,20 @@
         <li><a href="contact.html" class="nav-link">Contact</a></li>
     </ul>
 
-    <div class="menu-btn" id="menuBtn" onclick="toggleMenu(this)">
+    <div class="menu-btn" onclick="toggleMenu(this)">
         <span></span>
         <span></span>
         <span></span>
     </div>
 </header>
 
-<!-- ===== HERO ===== -->
+<!-- ================= HERO ================= -->
 <section class="hero">
     <h1>Welcome to Government Polytechnic College</h1>
     <p>Providing quality technical education since 1985</p>
 </section>
 
-<!-- ===== NEWS ===== -->
+<!-- ================= NEWS ================= -->
 <section class="section">
     <h2>Latest News</h2>
     <ul class="news">
@@ -50,7 +50,7 @@
     </ul>
 </section>
 
-<!-- ===== STUDENT CORNER ===== -->
+<!-- ================= STUDENT CORNER ================= -->
 <section class="section">
     <h2>Student Corner</h2>
     <div class="cards">
@@ -60,14 +60,17 @@
     </div>
 </section>
 
-<!-- ===== FOOTER ===== -->
+<!-- ================= FOOTER (SAPPHIRE FLOW) ================= -->
 <footer class="site-footer">
+
+    <!-- Top branding -->
     <div class="footer-top">
         <img src="Images/logo.jpeg" alt="College Logo">
         <h3>Government Polytechnic College</h3>
         <p>Bathinda</p>
     </div>
 
+    <!-- Footer content -->
     <div class="footer-container">
 
         <div class="footer-links">
@@ -105,16 +108,17 @@
 
     </div>
 
+    <!-- Bottom copyright -->
     <div class="footer-bottom">
-        © 2025 Government Polytechnic College, Bathinda
+        © 2025 Government Polytechnic College, Bathinda. All rights reserved.
     </div>
+
 </footer>
 
-<!-- ===== SCRIPT ===== -->
+<!-- ================= SCRIPT ================= -->
 <script>
 function toggleMenu(btn) {
-    const menu = document.getElementById("menu");
-    menu.classList.toggle("show");
+    document.getElementById("menu").classList.toggle("show");
     btn.classList.toggle("active");
 }
 </script>
