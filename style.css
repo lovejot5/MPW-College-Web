@@ -324,6 +324,41 @@ body {
     }
 }
 
+/* ===== FOOTER MOBILE GRID FIX ===== */
+@media (max-width: 768px) {
+
+    .footer-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+        gap: 20px;
+        text-align: left;
+    }
+
+    /* Make Locate Us full width */
+    .footer-map,
+    .footer-location {
+        grid-column: 1 / -1;
+    }
+
+    /* Slightly smaller text for mobile */
+    .footer-col h4 {
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .footer-col a,
+    .footer-col p {
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+    /* Center logo section */
+    .footer-top {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
 /* ================= REMOVE MOBILE TAP & FOCUS ================= */
 a, button, .nav-link {
     -webkit-tap-highlight-color: transparent;
