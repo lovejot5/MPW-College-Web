@@ -29,7 +29,7 @@ body {
 /* ================= HEADER ================= */
 header {
     background: var(--bg-header);
-    padding: 14px 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -70,10 +70,6 @@ header ul {
     gap: 18px;
 }
 
-header ul li {
-    display: flex;
-}
-
 .nav-link {
     text-decoration: none;
     color: var(--text-dark);
@@ -86,7 +82,7 @@ header ul li {
     background: rgba(0,0,0,0.05);
 }
 
-/* Active underline (desktop only) */
+/* Desktop underline */
 .nav-link.active::after {
     content: "";
     display: block;
@@ -132,28 +128,28 @@ header ul li {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 44px 20px;
+    padding: 36px 20px;
     text-align: center;
 }
 
 .hero h1 {
-    font-size: 28px;
-    margin-bottom: 8px;
+    font-size: 26px;
+    margin-bottom: 6px;
 }
 
 .hero p {
     color: var(--text-light);
 }
 
-/* ================= SECTIONS ================= */
+/* ================= SECTIONS (FIXED SPACING) ================= */
 .section {
-    padding: 28px 20px;
+    padding: 20px 20px;
     max-width: 1100px;
-    margin: auto;
+    margin: 0 auto 16px;
 }
 
 .section h2 {
-    margin-bottom: 16px;
+    margin-bottom: 14px;
 }
 
 /* ================= NEWS ================= */
@@ -163,8 +159,8 @@ header ul li {
 
 .news li {
     background: var(--bg-card);
-    padding: 14px 16px;
-    margin-bottom: 12px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
     border-radius: 10px;
     border: 1px solid var(--border-soft);
 }
@@ -172,16 +168,16 @@ header ul li {
 /* ================= CARDS ================= */
 .cards {
     display: flex;
-    gap: 16px;
+    gap: 14px;
     flex-wrap: wrap;
 }
 
 .card {
     background: var(--bg-card);
-    padding: 20px;
+    padding: 18px;
     flex: 1;
     min-width: 220px;
-    border-radius: 14px;
+    border-radius: 12px;
     border: 1px solid var(--border-soft);
     text-align: center;
 }
@@ -190,10 +186,7 @@ header ul li {
 .site-footer {
     background: var(--dark-bg);
     color: var(--text-muted);
-    padding: 28px 20px;
     margin-top: 50px;
-    text-align: center;
-    font-size: 14px;
 }
 
 /* ================= MOBILE ================= */
@@ -204,30 +197,29 @@ header ul li {
         display: block;
     }
 
-    /* SLIDE-DOWN MENU (NOT POPUP) */
+    /* ✅ RIGHT-SIDE MENU CARD (LIKE SCREENSHOT) */
     header ul {
         display: none;
         position: absolute;
         top: 64px;
-        left: 0;
-        width: 100%;
+        right: 14px;
+        width: 220px;
         background: var(--bg-card);
         flex-direction: column;
-        border-top: 1px solid var(--border-soft);
+        padding: 10px;
+        border-radius: 14px;
+        border: 1px solid var(--border-soft);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.15);
     }
 
     header ul.show {
         display: flex;
     }
 
-    header ul li {
-        width: 100%;
-    }
-
     .nav-link {
         width: 100%;
-        padding: 16px 20px;
-        border-radius: 0;
+        padding: 12px 14px;
+        border-radius: 10px;
     }
 
     .nav-link.active {
