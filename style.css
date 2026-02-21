@@ -146,15 +146,15 @@ header ul {
     color: var(--text-light);
 }
 
-/* ===== SECTIONS ===== */
+/* ===== SECTION SPACING ===== */
 .section {
-    padding: 40px 20px;
+    padding: 60px 20px;   /* more breathing room */
     max-width: 1100px;
     margin: auto;
 }
 
 .section h2 {
-    margin-bottom: 20px;
+    margin-bottom: 28px;
 }
 
 /* ===== NEWS ===== */
@@ -261,3 +261,31 @@ button:focus {
         background: rgba(0, 0, 0, 0.05);
     }
 }
+/* ===== MOBILE ACTIVE MENU – FULL ROW HIGHLIGHT ===== */
+@media (max-width: 768px) {
+
+    /* Remove underline completely on mobile */
+    .nav-link.active::after {
+        display: none;
+    }
+
+    /* Make links full-width blocks */
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: 12px;
+    }
+
+    /* Active page highlight */
+    .nav-link.active {
+        background: var(--bg-header);
+        font-weight: 600;
+    }
+
+    /* Tap feedback */
+    .nav-link:active {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
