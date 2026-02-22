@@ -138,7 +138,7 @@ header ul {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 26px 20px 18px;
+    padding: 20px 20px 14px;
     text-align: center;
 }
 
@@ -155,7 +155,7 @@ header ul {
 /* ================= SECTIONS ================= */
 .section {
     max-width: 1100px;
-    margin: 0 auto 14px;   /* TIGHTER GAP */
+    margin: 0 auto 10px;   /* TIGHTER GAP */
     padding: 0 20px;
 }
 
@@ -184,7 +184,7 @@ header ul {
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 14px;
+    gap: 10px;
 }
 
 .card {
