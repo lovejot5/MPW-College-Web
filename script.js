@@ -19,25 +19,55 @@ document.addEventListener("click", (e) => {
     }
 });
 
-/* ================= LOAD NEWS ================= */
-document.addEventListener("DOMContentLoaded", () => {
-    loadNews();
+const newsList = document.getElementById("newsList");
+const newsGlass = document.getElementById("newsGlass");
+let startY = 0;
+
+// ===== FETCH NEWS =====
+fetch("news.json")
+    .then(res => res.json())
+    .then(data => {
+        const now = new Date();
+
+        data.forEach(item => {
+            const date = new Date(item.date);
+            const diffDays = (now - date) / (1000 * 60 * 60 * 24);
+            const isNew = diffDays <= 7;
+
+            const li = document.createElement("li");
+            li.className = "news-item";
+
+            li.innerHTML = `
+                <a href="${item.url}">
+                    <div class="news-title">
+                        ${item.title}
+                        ${isNew ? '<span class="badge-new">NEW</span>' : ''}
+                    </div>
+                    <div class="news-meta">
+                        ${date.toLocaleDateString()} • ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                    </div>
+                </a>
+            `;
+            newsList.appendChild(li);
+        });
+
+        // duplicate for infinite loop
+        newsList.innerHTML += newsList.innerHTML;
+    });
+
+// ===== PAUSE ON HOVER =====
+newsGlass.addEventListener("mouseenter", () => newsGlass.classList.add("paused"));
+newsGlass.addEventListener("mouseleave", () => newsGlass.classList.remove("paused"));
+
+// ===== TOUCH / SWIPE SUPPORT =====
+newsGlass.addEventListener("touchstart", e => {
+    startY = e.touches[0].clientY;
+    newsGlass.classList.add("paused");
 });
 
-function loadNews() {
-    fetch("data/news.json")
-        .then(res => res.json())
-        .then(data => {
-            const newsList = document.getElementById("newsList");
-            if (!newsList) return;
-
-            newsList.innerHTML = "";
-
-            data.forEach(item => {
-                const li = document.createElement("li");
-                li.textContent = item.title;
-                newsList.appendChild(li);
-            });
-        })
-        .catch(err => console.error("News load error:", err));
-}
+newsGlass.addEventListener("touchend", e => {
+    const endY = e.changedTouches[0].clientY;
+    if (Math.abs(endY - startY) < 30) {
+        newsGlass.classList.remove("paused");
+    }
+});
