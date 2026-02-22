@@ -35,7 +35,7 @@ body {
 /* ================= HEADER ================= */
 header {
     background: var(--bg-header);
-    padding: 14px 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,12 +48,12 @@ header {
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .logo img {
-    width: 42px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: #fff;
     padding: 4px;
@@ -61,7 +61,7 @@ header {
 }
 
 .logo h2 {
-    font-size: 16px;
+    font-size: 15px;
 }
 
 .logo p {
@@ -73,23 +73,22 @@ header {
 header ul {
     list-style: none;
     display: flex;
-    gap: 18px;
+    gap: 16px;
 }
 
 .nav-link {
+    position: relative;
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
-    padding: 8px 12px;
+    padding: 6px 10px;
     border-radius: 8px;
-    position: relative;
 }
 
 .nav-link:hover {
     background: rgba(0,0,0,0.05);
 }
 
-/* FULL WIDTH UNDERLINE */
 .nav-link.active::after {
     content: "";
     position: absolute;
@@ -115,7 +114,7 @@ header ul {
     width: 100%;
     height: 2px;
     background: var(--text-dark);
-    transition: 0.3s ease;
+    transition: 0.3s;
 }
 
 .menu-btn span:nth-child(1){ top:0; }
@@ -136,20 +135,21 @@ header ul {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 36px 20px;
+    padding: 28px 20px 20px; /* LESS SPACE */
     text-align: center;
 }
 
 .hero h1 {
-    font-size: 28px;
+    font-size: 26px;
     margin-bottom: 6px;
 }
 
 .hero p {
     color: var(--text-light);
+    font-size: 14px;
 }
 
-/* ================= SECTIONS ================= */
+/* ================= SECTIONS (TIGHT SPACING) ================= */
 .section {
     max-width: 1100px;
     margin: 0 auto 16px; /* REDUCED GAP */
@@ -157,7 +157,8 @@ header ul {
 }
 
 .section h2 {
-    margin-bottom: 12px;
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 /* ================= NEWS ================= */
@@ -165,30 +166,32 @@ header ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
 }
 
 .news li {
     background: var(--bg-card);
-    padding: 16px;
-    border-radius: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
     border: 1px solid var(--border-soft);
+    font-size: 14px;
 }
 
 /* ================= STUDENT CORNER ================= */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
+    gap: 14px;
 }
 
 .card {
     background: var(--bg-card);
-    padding: 22px;
-    border-radius: 16px;
+    padding: 18px;
+    border-radius: 14px;
     border: 1px solid var(--border-soft);
     text-align: center;
     font-weight: 500;
+    font-size: 14px;
 }
 
 /* ================= FOOTER ================= */
@@ -198,15 +201,14 @@ header ul {
     margin-top: auto;
 }
 
-/* Footer top */
 .footer-top {
     text-align: center;
-    padding: 28px 20px 18px;
+    padding: 26px 20px 14px;
 }
 
 .footer-top img {
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     background: #fff;
     padding: 6px;
@@ -222,24 +224,22 @@ header ul {
     font-size: 13px;
 }
 
-/* Footer grid */
 .footer-container {
     max-width: 1100px;
     margin: auto;
-    padding: 24px 20px;
+    padding: 26px 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+    gap: 24px;
 }
 
-.footer-col h4 {
+.footer-container h4 {
     color: #fff;
     margin-bottom: 10px;
     font-size: 14px;
 }
 
-.footer-col a,
-.footer-col p {
+.footer-container a {
     display: block;
     color: var(--text-muted);
     text-decoration: none;
@@ -247,21 +247,24 @@ header ul {
     font-size: 13px;
 }
 
-.footer-col a:hover {
+.footer-container p {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.footer-container a:hover {
     color: #fff;
 }
 
-/* Map FIX */
-.footer-map iframe,
-.footer-location iframe {
+/* Map */
+.footer-map iframe {
     width: 100%;
-    height: 160px;
+    height: 150px;
     border-radius: 12px;
     border: none;
     filter: grayscale(100%);
 }
 
-/* Footer bottom */
 .footer-bottom {
     text-align: center;
     padding: 12px;
@@ -269,22 +272,23 @@ header ul {
     font-size: 12px;
 }
 
-/* ================= MOBILE MENU ================= */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
     .menu-btn {
         display: block;
     }
 
+    /* MENU CARD (LIKE IMAGE) */
     header ul {
         display: none;
         position: absolute;
-        top: 70px;
+        top: 64px;
         right: 16px;
         width: 230px;
         background: var(--bg-card);
         flex-direction: column;
-        padding: 12px;
+        padding: 10px;
         border-radius: 16px;
         border: 1px solid var(--border-soft);
         box-shadow: 0 18px 40px rgba(0,0,0,0.18);
@@ -295,9 +299,9 @@ header ul {
     }
 
     .nav-link {
-        width: 100%;
-        padding: 14px 16px;
+        padding: 12px 14px;
         border-radius: 12px;
+        font-size: 14px;
     }
 
     .nav-link.active {
@@ -309,28 +313,23 @@ header ul {
         display: none;
     }
 
-    /* FOOTER MOBILE GRID */
+    /* FOOTER GRID (YOUR REQUIRED LAYOUT) */
     .footer-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
     }
 
-    .footer-map,
-    .footer-location {
+    .footer-map {
         grid-column: 1 / -1;
     }
 
     .footer-map iframe {
-        height: 180px;
+        height: 160px;
     }
 }
 
-/* ================= REMOVE BLUE TAP / FOCUS ================= */
-a, button, .nav-link {
+/* ================= REMOVE BLUE TAP ================= */
+a, button {
     -webkit-tap-highlight-color: transparent;
-}
-
-a:focus,
-button:focus {
     outline: none;
 }
