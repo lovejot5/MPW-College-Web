@@ -107,3 +107,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
     startAutoScroll();
 });
+
+/* ================= NOTICE PAGINATION ================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+    fetch("data/notices.json")
+        .then(res => res.json())
+        .then(data => {
+
+            let index = 0;
+            const container = document.getElementById("noticeContainer");
+
+            function renderNotice() {
+                const n = data[index];
+
+                container.innerHTML = `
+                    <div class="notice-card">
+                        <div class="notice-header">
+                            <img src="${n.author.icon}">
+                            <div>
+                                <strong>${n.author.name}</strong><br>
+                                <span>${new Date(n.date).toDateString()}</span>
+                            </div>
+                            ${n.isNew ? '<span class="badge-new">NEW</span>' : ''}
+                        </div>
+
+                        <h3>${n.title}</h3>
+                        <p>${n.description}</p>
+
+                        ${n.images.length ? `
+                            <div class="notice-images">
+                                ${n.images.map(img => `<img src="${img}">`).join("")}
+                            </div>` : ""
+                        }
+
+                        ${n.buttons.length ? `
+                            <div class="notice-actions">
+                                ${n.buttons.map(b =>
+                                    `<a href="${b.url}" target="_blank">${b.text}</a>`
+                                ).join("")}
+                            </div>` : ""
+                        }
+
+                        <div class="notice-pagination">
+                            <button ${index === 0 ? "disabled" : ""} id="prev">Previous</button>
+                            <span>${index + 1} / ${data.length}</span>
+                            <button ${index === data.length - 1 ? "disabled" : ""} id="next">Next</button>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById("prev")?.addEventListener("click", () => {
+                    if (index > 0) {
+                        index--;
+                        renderNotice();
+                    }
+                });
+
+                document.getElementById("next")?.addEventListener("click", () => {
+                    if (index < data.length - 1) {
+                        index++;
+                        renderNotice();
+                    }
+                });
+            }
+
+            renderNotice();
+        });
+});
