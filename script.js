@@ -28,23 +28,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const newsList = document.getElementById("newsList");
     const newsGlass = document.getElementById("newsGlass");
-    let startY = 0;
 
     if (!newsList || !newsGlass) return;
 
     fetch("data/news.json")
-        .then(res => {
-            if (!res.ok) throw new Error("news.json not found");
-            return res.json();
-        })
+        .then(res => res.json())
         .then(data => {
 
             newsList.innerHTML = "";
 
             data.forEach(item => {
-
                 const li = document.createElement("li");
-                li.className = "news-item";
 
                 li.innerHTML = `
                     <a href="${item.url}">
@@ -61,38 +55,24 @@ document.addEventListener("DOMContentLoaded", () => {
                 newsList.appendChild(li);
             });
 
-            /* Duplicate items for infinite smooth loop */
+            /* Duplicate for infinite loop */
             newsList.innerHTML += newsList.innerHTML;
         })
-        .catch(err => {
-            console.error(err);
+        .catch(() => {
             newsList.innerHTML = `
-                <li class="news-item">
+                <li>
                     <div class="news-title">No news available</div>
                 </li>
             `;
         });
 
-    /* Pause on hover (desktop) */
+    /* Pause on hover (desktop only) */
     newsGlass.addEventListener("mouseenter", () => {
         newsGlass.classList.add("paused");
     });
 
     newsGlass.addEventListener("mouseleave", () => {
         newsGlass.classList.remove("paused");
-    });
-
-    /* Touch support (mobile) */
-    newsGlass.addEventListener("touchstart", e => {
-        startY = e.touches[0].clientY;
-        newsGlass.classList.add("paused");
-    });
-
-    newsGlass.addEventListener("touchend", e => {
-        const endY = e.changedTouches[0].clientY;
-        if (Math.abs(endY - startY) < 30) {
-            newsGlass.classList.remove("paused");
-        }
     });
 
 });
