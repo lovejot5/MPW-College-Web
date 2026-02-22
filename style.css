@@ -11,8 +11,6 @@
     --text-muted: #9aa4ad;
 
     --border-soft: #e5d8c8;
-
-    --theme-bg: #efe3d3;
     --theme-accent: #7b4b1f;
 }
 
@@ -79,34 +77,23 @@ header ul {
     gap: 14px;
 }
 
-/* ================= NAV LINK FINAL (UNDERLINE ACTIVE PAGE) ================= */
-
-/* Base link (ALL states) */
-.nav-link,
-.nav-link:link,
-.nav-link:visited {
+.nav-link {
     color: var(--text-dark);
     text-decoration: none;
-    background: transparent;
     font-weight: 500;
     position: relative;
+    padding: 6px 8px;
+    border-radius: 8px;
 }
 
-/* Hover (no underline, soft bg only) */
 .nav-link:hover {
-    background: rgba(0, 0, 0, 0.06);
-    color: var(--text-dark);
-    text-decoration: none;
+    background: rgba(0,0,0,0.06);
 }
 
-/* Active page → UNDERLINE */
 .nav-link.active {
-    background: transparent;
     font-weight: 600;
-    color: var(--text-dark);
 }
 
-/* Underline for active page */
 .nav-link.active::after {
     content: "";
     position: absolute;
@@ -153,13 +140,12 @@ header ul {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 20px 20px 14px;
+    padding: 20px;
     text-align: center;
 }
 
 .hero h1 {
     font-size: 26px;
-    margin-bottom: 6px;
 }
 
 .hero p {
@@ -170,116 +156,74 @@ header ul {
 /* ================= SECTIONS ================= */
 .section {
     max-width: 1100px;
-    margin: 0 auto 10px;   /* TIGHTER GAP */
+    margin: 0 auto 20px;
     padding: 0 20px;
 }
 
-.section h2 {
-    font-size: 20px;
-    margin-bottom: 8px;
-}
+/* ================= LATEST NEWS ================= */
 
-/* ===== NEWS GLASS (FIXED) ===== */
-/* ===== NEWS SECTION FIX ===== */
-/* ===== FLOATING NEWS TITLE ===== */
+/* Centered title (floating, NOT scrolling) */
 .news-title-card {
-    max-width: 520px;
+    max-width: 1100px;
     margin: 0 auto 12px;
-
-    padding: 14px 18px;
+    padding: 14px 20px;
     text-align: center;
 
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255,255,255,0.7);
     backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
     border-radius: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
 
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 600;
     color: #3b2a1a;
-
-    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
 }
 
-.news-section {
-    padding: 10px 16px 30px;
-}
-
-/* ===== NEWS CONTAINER (NOT FLOATING) ===== */
+/* News container (ONLY this scrolls) */
 .news-glass {
-    width: 100%;
-    max-width: 520px;
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 10px 20px;
 
-    padding: 10px 16px;
-
-    height: 180px; /* 👈 ONLY THIS SCROLLS */
-
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-
-    border-radius: 22px;
-    border: 1px solid rgba(255, 255, 255, 0.65);
-
-    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    height: 210px;           /* 👈 shows 4–5 items */
     overflow: hidden;
+
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(10px);
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,0.6);
 }
 
-/* ===== HEADING ===== */
-.news-heading {
-    margin: 0 0 10px;
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    color: #3b2a1a;
-}
-
-/* ===== NEWS LIST ===== */
+/* Scrolling list */
 .news-list {
-    margin: 0;
-    padding: 0;
     list-style: none;
-
-    animation: scrollNews 20s linear infinite;
+    animation: scrollNews 18s linear infinite;
 }
 
-.news-glass.paused .news-list {
-    animation-play-state: paused;
+@keyframes scrollNews {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
 }
 
-/* ===== NEWS ITEM ===== */
 .news-item {
-    padding: 10px 4px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
 .news-item:last-child {
     border-bottom: none;
 }
 
-.news-item a {
-    text-decoration: none;
-    color: #1e1e1e;
-    display: block;
-}
-
 .news-title {
     font-weight: 500;
-    line-height: 1.35;
 }
 
 .news-meta {
     font-size: 11px;
     opacity: 0.7;
-    margin-top: 3px;
 }
 
-/* ===== NEW BADGE ===== */
 .badge-new {
-    background: #7b4b1f;
+    background: var(--theme-accent);
     color: #fff;
     font-size: 10px;
     padding: 2px 6px;
@@ -287,11 +231,6 @@ header ul {
     margin-left: 6px;
 }
 
-/* ===== SCROLL ===== */
-@keyframes scrollNews {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-}
 /* ================= STUDENT CORNER ================= */
 .cards {
     display: grid;
@@ -305,7 +244,6 @@ header ul {
     border-radius: 14px;
     border: 1px solid var(--border-soft);
     text-align: center;
-    font-size: 14px;
     font-weight: 500;
 }
 
@@ -316,82 +254,6 @@ header ul {
     margin-top: auto;
 }
 
-/* Footer top */
-.footer-top {
-    text-align: center;
-    padding: 26px 20px 14px;
-}
-
-.footer-top img {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: #fff;
-    padding: 6px;
-    margin-bottom: 10px;
-}
-
-.footer-top h3 {
-    color: #fff;
-    font-size: 16px;
-}
-
-.footer-top p {
-    font-size: 13px;
-}
-
-/* Footer grid */
-.footer-container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 26px 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-}
-
-.footer-container h4 {
-    color: #fff;
-    margin-bottom: 8px;
-    font-size: 14px;
-}
-
-.footer-container a {
-    display: block;
-    color: var(--text-muted);
-    text-decoration: none;
-    margin-bottom: 6px;
-    font-size: 13px;
-}
-
-.footer-container p {
-    font-size: 13px;
-    line-height: 1.6;
-}
-
-.footer-container a:hover {
-    color: #fff;
-}
-
-/* Map */
-.footer-map iframe {
-    width: 100%;
-    height: 150px;
-    border-radius: 12px;
-    border: none;
-    filter: grayscale(100%);
-}
-
-/* Footer bottom */
-.footer-bottom {
-    text-align: center;
-    padding: 14px 12px 18px; /* slightly more bottom padding */
-    font-size: 12px;
-    color: var(--text-muted);
-    background: var(--dark-bg); /* same as footer */
-    border-top: none; /* REMOVE separation line */
-}
-
 /* ================= MOBILE ================= */
 @media (max-width: 768px) {
 
@@ -399,7 +261,6 @@ header ul {
         display: block;
     }
 
-    /* MOBILE MENU CARD */
     header ul {
         display: none;
         position: absolute;
@@ -411,120 +272,34 @@ header ul {
         padding: 10px;
         border-radius: 16px;
         border: 1px solid var(--border-soft);
-        box-shadow: 0 18px 40px rgba(0,0,0,0.18);
     }
 
     header ul.show {
         display: flex;
     }
 
-    header ul li {
-        width: 100%;
-    }
-
     .nav-link {
         width: 100%;
-        padding: 12px 14px;
-        border-radius: 12px;
-        font-size: 14px;
-    }
-
-    /* FOOTER MOBILE GRID (YOUR EXACT REQUEST) */
-    .footer-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 16px;
-    }
-
-    /* Map full width */
-    .footer-map {
-        grid-column: 1 / -1;
-    }
-
-    .footer-map iframe {
-        height: 160px;
-    }
-
-    .news-glass {
-        height: 200px;
-        padding: 14px;
-    }
-}
-
-/* ================= MOBILE MENU – FULL ROW ACTIVE FIX ================= */
-@media (max-width: 768px) {
-
-    /* Make each menu item full-width */
-    header ul li {
-        width: 100%;
-    }
-
-    .nav-link {
-        display: block;              /* IMPORTANT */
-        width: 100%;                 /* FULL ROW */
         padding: 14px 16px;
         border-radius: 12px;
-        margin-bottom: 6px;          /* SPACE BETWEEN SECTIONS */
-        box-sizing: border-box;
     }
 
-    /* Active page – highlight FULL ROW */
     .nav-link.active {
         background: var(--bg-header);
-        font-weight: 600;
     }
 
-    /* Ensure no underline on mobile */
     .nav-link::after {
         display: none;
     }
+
+    /* Mobile news sizing */
+    .news-glass {
+        height: 190px;   /* 👈 still limited */
+        padding: 10px 14px;
+    }
 }
-/* ================= REMOVE ALL BLUE TAP / SELECTION ================= */
+
+/* ================= REMOVE BLUE TAP ================= */
 * {
     -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-}
-
-a, button, .nav-link, .menu-btn {
-    -webkit-tap-highlight-color: transparent;
-    outline: none;
-    user-select: none;
-}
-
-a:focus,
-a:active,
-button:focus,
-button:active {
-    outline: none !important;
-    background-color: inherit;
-}
-
-/* Android Chrome ghost focus fix */
-.nav-link::selection,
-.menu-btn::selection {
-    background: transparent;
-}
-
-/* ================= MOBILE SECTION HIGHLIGHT FIX ================= */
-@media (max-width: 768px) {
-
-    /* Give sections visual separation */
-    .section {
-        padding-top: 14px;
-        padding-bottom: 14px;
-    }
-
-    /* Highlight Latest News as a section (not floating card) */
-    .news-section {
-        background: rgba(255, 255, 255, 0.35);
-        border-radius: 18px;
-        margin: 0 16px 16px;
-        padding: 16px 12px;
-    }
-
-    /* Let glass card size naturally */
-    .news-glass {
-        height: auto;        /* 🔴 THIS FIXES THE TALL EMPTY CARD */
-        max-width: 100%;
-        margin: 0 auto;
-    }
 }
