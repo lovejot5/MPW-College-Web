@@ -484,3 +484,28 @@ button:active {
 .menu-btn::selection {
     background: transparent;
 }
+
+/* ================= MOBILE SECTION HIGHLIGHT FIX ================= */
+@media (max-width: 768px) {
+
+    /* Give sections visual separation */
+    .section {
+        padding-top: 14px;
+        padding-bottom: 14px;
+    }
+
+    /* Highlight Latest News as a section (not floating card) */
+    .news-section {
+        background: rgba(255, 255, 255, 0.35);
+        border-radius: 18px;
+        margin: 0 16px 16px;
+        padding: 16px 12px;
+    }
+
+    /* Let glass card size naturally */
+    .news-glass {
+        height: auto;        /* 🔴 THIS FIXES THE TALL EMPTY CARD */
+        max-width: 100%;
+        margin: 0 auto;
+    }
+}
