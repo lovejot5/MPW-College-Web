@@ -454,3 +454,85 @@ header ul {
         grid-column: 1 / -1;
     }
 }
+/* ================= HERO DETAILED ================= */
+.hero-detailed {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 26px;
+    padding: 26px 20px;
+}
+
+/* Left content */
+.hero-content h1 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.hero-description {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+/* ================= PRINCIPAL GLASS CARD ================= */
+.principal-card {
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(14px);
+    border-radius: 20px;
+    padding: 18px;
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.principal-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.principal-header img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--accent-soft);
+}
+
+.principal-header h3 {
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.principal-header span {
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+}
+
+.principal-header small {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.principal-card p {
+    font-size: 13.5px;
+    color: var(--text-light);
+    line-height: 1.55;
+    margin-bottom: 8px;
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px) {
+    .hero-detailed {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .hero-content h1 {
+        font-size: 24px;
+    }
+}
