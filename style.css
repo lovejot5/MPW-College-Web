@@ -333,8 +333,28 @@ header ul {
     }
 }
 
-/* ================= REMOVE BLUE TAP ================= */
-a, button {
+/* ================= REMOVE ALL BLUE TAP / SELECTION ================= */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+a, button, .nav-link, .menu-btn {
     -webkit-tap-highlight-color: transparent;
     outline: none;
+    user-select: none;
+}
+
+a:focus,
+a:active,
+button:focus,
+button:active {
+    outline: none !important;
+    background-color: inherit;
+}
+
+/* Android Chrome ghost focus fix */
+.nav-link::selection,
+.menu-btn::selection {
+    background: transparent;
 }
