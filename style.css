@@ -69,35 +69,38 @@ header {
     color: var(--text-light);
 }
 
-/* ================= NAV (DESKTOP) ================= */
+/* ================= NAV ================= */
 header ul {
     list-style: none;
     display: flex;
-    gap: 16px;
+    gap: 14px;
 }
 
+/* FULL ROW NAV ITEM */
 .nav-link {
-    position: relative;
+    display: block;
+    padding: 8px 14px;
+    border-radius: 10px;
     text-decoration: none;
     color: var(--text-dark);
     font-weight: 500;
-    padding: 6px 10px;
-    border-radius: 8px;
 }
 
+/* Hover full row */
 .nav-link:hover {
-    background: rgba(0,0,0,0.05);
+    background: rgba(0,0,0,0.06);
 }
 
+/* Active full row (NO underline) */
+.nav-link.active {
+    background: var(--bg-header);
+    font-weight: 600;
+}
+
+/* REMOVE underline completely */
+.nav-link::after,
 .nav-link.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 3px;
-    background: var(--accent);
-    border-radius: 999px;
+    display: none;
 }
 
 /* ================= HAMBURGER ================= */
@@ -114,7 +117,7 @@ header ul {
     width: 100%;
     height: 2px;
     background: var(--text-dark);
-    transition: 0.3s;
+    transition: 0.3s ease;
 }
 
 .menu-btn span:nth-child(1){ top:0; }
@@ -135,7 +138,7 @@ header ul {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 28px 20px 20px; /* LESS SPACE */
+    padding: 26px 20px 18px;
     text-align: center;
 }
 
@@ -145,20 +148,20 @@ header ul {
 }
 
 .hero p {
-    color: var(--text-light);
     font-size: 14px;
+    color: var(--text-light);
 }
 
-/* ================= SECTIONS (TIGHT SPACING) ================= */
+/* ================= SECTIONS ================= */
 .section {
     max-width: 1100px;
-    margin: 0 auto 16px; /* REDUCED GAP */
+    margin: 0 auto 14px;   /* TIGHTER GAP */
     padding: 0 20px;
 }
 
 .section h2 {
-    margin-bottom: 10px;
     font-size: 20px;
+    margin-bottom: 8px;
 }
 
 /* ================= NEWS ================= */
@@ -190,8 +193,8 @@ header ul {
     border-radius: 14px;
     border: 1px solid var(--border-soft);
     text-align: center;
-    font-weight: 500;
     font-size: 14px;
+    font-weight: 500;
 }
 
 /* ================= FOOTER ================= */
@@ -201,6 +204,7 @@ header ul {
     margin-top: auto;
 }
 
+/* Footer top */
 .footer-top {
     text-align: center;
     padding: 26px 20px 14px;
@@ -224,6 +228,7 @@ header ul {
     font-size: 13px;
 }
 
+/* Footer grid */
 .footer-container {
     max-width: 1100px;
     margin: auto;
@@ -235,7 +240,7 @@ header ul {
 
 .footer-container h4 {
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 14px;
 }
 
@@ -265,6 +270,7 @@ header ul {
     filter: grayscale(100%);
 }
 
+/* Footer bottom */
 .footer-bottom {
     text-align: center;
     padding: 12px;
@@ -279,7 +285,7 @@ header ul {
         display: block;
     }
 
-    /* MENU CARD (LIKE IMAGE) */
+    /* MOBILE MENU CARD */
     header ul {
         display: none;
         position: absolute;
@@ -298,27 +304,24 @@ header ul {
         display: flex;
     }
 
+    header ul li {
+        width: 100%;
+    }
+
     .nav-link {
+        width: 100%;
         padding: 12px 14px;
         border-radius: 12px;
         font-size: 14px;
     }
 
-    .nav-link.active {
-        background: var(--bg-header);
-        font-weight: 600;
-    }
-
-    .nav-link.active::after {
-        display: none;
-    }
-
-    /* FOOTER GRID (YOUR REQUIRED LAYOUT) */
+    /* FOOTER MOBILE GRID (YOUR EXACT REQUEST) */
     .footer-container {
         grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
+        gap: 16px;
     }
 
+    /* Map full width */
     .footer-map {
         grid-column: 1 / -1;
     }
