@@ -32,20 +32,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!newsList || !newsGlass) return;
 
-    /* ===== FETCH NEWS (CORRECT PATH) ===== */
     fetch("data/news.json")
         .then(res => {
             if (!res.ok) throw new Error("news.json not found");
             return res.json();
         })
         .then(data => {
-            const now = new Date();
+
             newsList.innerHTML = "";
 
             data.forEach(item => {
-                const date = new Date(item.date);
-                const diffDays = (now - date) / (1000 * 60 * 60 * 24);
-                const isNew = diffDays <= 7;
 
                 const li = document.createElement("li");
                 li.className = "news-item";
@@ -54,10 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     <a href="${item.url}">
                         <div class="news-title">
                             ${item.title}
-                            ${isNew ? '<span class="badge-new">NEW</span>' : ''}
+                            ${item.isNew ? '<span class="badge-new">NEW</span>' : ''}
                         </div>
                         <div class="news-meta">
-                            ${date.toDateString()}
+                            ${new Date(item.date).toDateString()}
                         </div>
                     </a>
                 `;
@@ -65,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 newsList.appendChild(li);
             });
 
-            /* Duplicate list for infinite scroll */
+            /* Duplicate items for infinite smooth loop */
             newsList.innerHTML += newsList.innerHTML;
         })
         .catch(err => {
@@ -77,16 +73,16 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         });
 
-    /* ===== PAUSE ON HOVER ===== */
-    newsGlass.addEventListener("mouseenter", () =>
-        newsGlass.classList.add("paused")
-    );
+    /* Pause on hover (desktop) */
+    newsGlass.addEventListener("mouseenter", () => {
+        newsGlass.classList.add("paused");
+    });
 
-    newsGlass.addEventListener("mouseleave", () =>
-        newsGlass.classList.remove("paused")
-    );
+    newsGlass.addEventListener("mouseleave", () => {
+        newsGlass.classList.remove("paused");
+    });
 
-    /* ===== TOUCH SUPPORT ===== */
+    /* Touch support (mobile) */
     newsGlass.addEventListener("touchstart", e => {
         startY = e.touches[0].clientY;
         newsGlass.classList.add("paused");
