@@ -253,6 +253,58 @@ header ul {
     font-weight: 500;
 }
 
+/* ================= NOTICE EMBEDS ================= */
+.notice-card {
+    background: rgba(255,255,255,0.85);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border-soft);
+}
+
+.notice-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.notice-header img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.notice-header span {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.notice-images {
+    display: flex;
+    gap: 10px;
+    margin: 12px 0;
+    overflow-x: auto;
+}
+
+.notice-images img {
+    height: 120px;
+    border-radius: 10px;
+}
+
+.notice-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.notice-actions a {
+    padding: 8px 14px;
+    background: var(--bg-header);
+    border-radius: 8px;
+    font-size: 13px;
+}
+
 /* ================= FOOTER ================= */
 .site-footer {
     background: var(--dark-bg);
