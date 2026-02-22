@@ -345,6 +345,22 @@ header ul {
     }
 }
 
+/* ================= MOBILE ACTIVE HIGHLIGHT FIX ================= */
+@media (max-width: 768px) {
+
+    /* Remove underline on mobile */
+    .nav-link.active::after {
+        display: none;
+    }
+
+    /* Highlight full row on mobile */
+    .nav-link.active {
+        background: var(--bg-header);
+        border-radius: 12px;
+        font-weight: 600;
+    }
+}
+
 /* ================= REMOVE ALL BLUE TAP / SELECTION ================= */
 * {
     -webkit-tap-highlight-color: transparent;
