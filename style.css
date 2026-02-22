@@ -160,14 +160,13 @@ header ul {
 }
 
 
-/* ================= LATEST NEWS (FINAL STABLE) ================= */
+/* ================= LATEST NEWS (AUTO + MANUAL) ================= */
 
 .latest-news-wrapper {
     width: 100%;
-    padding: 16px 16px 24px;
+    padding: 16px;
 }
 
-/* Glass container */
 .latest-news-glass {
     max-width: 1200px;
     margin: 0 auto;
@@ -176,17 +175,28 @@ header ul {
     border-radius: 22px;
     border: 1px solid rgba(255,255,255,0.7);
     box-shadow: 0 10px 26px rgba(0,0,0,0.1);
-    overflow: hidden;
+    position: relative;
 }
 
-/* Title */
+/* Floating title */
 .latest-news-title {
+    position: sticky;
+    top: 0;
+    z-index: 2;
     text-align: center;
-    padding: 16px;
+    padding: 14px;
     font-size: 18px;
     font-weight: 600;
-    color: #3b2a1a;
     background: rgba(255,255,255,0.9);
+    color: #3b2a1a;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Scroll container */
+.latest-news-container {
+    max-height: 240px;   /* ~5 items */
+    overflow-y: auto;
+    scroll-behavior: smooth;
 }
 
 /* News list */
@@ -194,21 +204,11 @@ header ul {
     list-style: none;
     padding: 0 24px;
     margin: 0;
-
-    height: 200px;                 /* ~5 items */
-    overflow: hidden;
-
-    animation: scrollNews 22s linear infinite;
-}
-
-/* Pause only on hover */
-.latest-news-glass.paused .latest-news-list {
-    animation-play-state: paused;
 }
 
 /* Item */
 .latest-news-list li {
-    padding: 12px 4px;
+    padding: 14px 4px;
     border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
@@ -216,23 +216,17 @@ header ul {
     border-bottom: none;
 }
 
-.latest-news-list a {
-    display: block;
-    color: var(--text-dark);
-}
-
-.latest-news-list .news-title {
+.news-title {
     font-weight: 500;
     line-height: 1.4;
 }
 
-.latest-news-list .news-meta {
+.news-meta {
     font-size: 12px;
     opacity: 0.7;
     margin-top: 3px;
 }
 
-/* NEW badge */
 .badge-new {
     background: var(--theme-accent);
     color: #fff;
@@ -242,21 +236,13 @@ header ul {
     margin-left: 6px;
 }
 
-/* Animation */
-@keyframes scrollNews {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
-}
-
-/* ================= MOBILE FIX ================= */
+/* Mobile */
 @media (max-width: 768px) {
-
-    .latest-news-wrapper {
-        padding: 12px;
+    .latest-news-container {
+        max-height: 200px;
     }
 
     .latest-news-list {
-        height: 190px;   /* slightly smaller */
         padding: 0 16px;
     }
 }
