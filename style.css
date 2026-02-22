@@ -11,7 +11,6 @@
     --text-muted: #9aa4ad;
 
     --border-soft: #e5d8c8;
-
     --theme-accent: #7b4b1f;
 }
 
@@ -33,6 +32,16 @@ body {
     color: var(--text-dark);
     display: flex;
     flex-direction: column;
+}
+
+/* REMOVE ALL UNDERLINES */
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+    text-decoration: none !important;
+    color: inherit;
 }
 
 /* ================= HEADER ================= */
@@ -76,31 +85,23 @@ header {
 header ul {
     list-style: none;
     display: flex;
-    gap: 14px;
+    gap: 16px;
 }
 
 .nav-link {
-    position: relative;
-    padding: 6px 10px;
-    border-radius: 8px;
+    padding: 8px 12px;
+    border-radius: 10px;
     font-weight: 500;
-    color: var(--text-dark);
 }
 
 .nav-link:hover {
     background: rgba(0,0,0,0.06);
 }
 
-/* Desktop active underline */
-.nav-link.active::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 100%;
-    height: 3px;
-    background: var(--accent);
-    border-radius: 999px;
+/* Desktop active */
+.nav-link.active {
+    background: rgba(0,0,0,0.08);
+    font-weight: 600;
 }
 
 /* ================= HAMBURGER ================= */
@@ -138,7 +139,7 @@ header ul {
 
 /* ================= HERO ================= */
 .hero {
-    padding: 24px 20px 16px;
+    padding: 26px 20px 18px;
     text-align: center;
 }
 
@@ -155,13 +156,11 @@ header ul {
 /* ================= SECTIONS ================= */
 .section {
     max-width: 1200px;
-    margin: 0 auto 18px;
+    margin: 0 auto 28px;
     padding: 0 20px;
 }
 
-
-/* ================= LATEST NEWS (AUTO + MANUAL) ================= */
-
+/* ================= LATEST NEWS ================= */
 .latest-news-wrapper {
     width: 100%;
     padding: 16px;
@@ -169,16 +168,16 @@ header ul {
 
 .latest-news-glass {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: auto;
     background: rgba(255,255,255,0.75);
     backdrop-filter: blur(12px);
     border-radius: 22px;
     border: 1px solid rgba(255,255,255,0.7);
     box-shadow: 0 10px 26px rgba(0,0,0,0.1);
-    position: relative;
+    overflow: hidden;
 }
 
-/* Floating title */
+/* Floating title INSIDE container */
 .latest-news-title {
     position: sticky;
     top: 0;
@@ -187,14 +186,14 @@ header ul {
     padding: 14px;
     font-size: 18px;
     font-weight: 600;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.92);
     color: #3b2a1a;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
-/* Scroll container */
+/* Scroll area */
 .latest-news-container {
-    max-height: 240px;   /* ~5 items */
+    max-height: 240px;
     overflow-y: auto;
     scroll-behavior: smooth;
 }
@@ -202,11 +201,9 @@ header ul {
 /* News list */
 .latest-news-list {
     list-style: none;
-    padding: 0 24px;
-    margin: 0;
+    padding: 0 22px;
 }
 
-/* Item */
 .latest-news-list li {
     padding: 14px 4px;
     border-bottom: 1px solid rgba(0,0,0,0.06);
@@ -236,21 +233,11 @@ header ul {
     margin-left: 6px;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-    .latest-news-container {
-        max-height: 200px;
-    }
-
-    .latest-news-list {
-        padding: 0 16px;
-    }
-}
 /* ================= STUDENT CORNER ================= */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 12px;
+    gap: 14px;
 }
 
 .card {
@@ -264,7 +251,7 @@ header ul {
 
 /* ================= NOTICE EMBEDS ================= */
 .notice-card {
-    background: rgba(255,255,255,0.85);
+    background: rgba(255,255,255,0.9);
     border-radius: 16px;
     padding: 18px;
     margin-bottom: 20px;
@@ -323,7 +310,7 @@ header ul {
 
 .footer-top {
     text-align: center;
-    padding: 26px 20px 14px;
+    padding: 26px 20px 18px;
 }
 
 .footer-top img {
@@ -392,13 +379,14 @@ header ul {
         position: absolute;
         top: 64px;
         right: 16px;
-        width: 230px;
+        width: 240px;
         background: var(--bg-card);
         flex-direction: column;
-        padding: 10px;
-        border-radius: 16px;
+        padding: 12px;
+        border-radius: 18px;
         border: 1px solid var(--border-soft);
         box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+        gap: 8px;
     }
 
     header ul.show {
@@ -408,19 +396,16 @@ header ul {
     .nav-link {
         width: 100%;
         padding: 14px 16px;
+        border-radius: 12px;
     }
 
     .nav-link.active {
         background: var(--bg-header);
+        font-weight: 600;
     }
 
-    .nav-link.active::after {
-        display: none;
-    }
-
-    .news-list {
-        height: 190px;
-        padding: 0 16px;
+    .latest-news-container {
+        max-height: 200px;
     }
 
     .footer-container {
