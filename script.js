@@ -2,6 +2,9 @@ function toggleMenu(btn) {
     const menu = document.getElementById("menu");
     menu.classList.toggle("show");
     btn.classList.toggle("active");
+
+    // REMOVE FOCUS AFTER CLICK (fix blue flash)
+    btn.blur();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
