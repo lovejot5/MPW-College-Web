@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#efe3d3">
     <title>Government Polytechnic College, Bathinda</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- ================= HEADER ================= -->
 <header>
     <div class="logo">
         <img src="Images/logo.jpeg" alt="College Logo">
@@ -28,30 +30,82 @@
     </ul>
 
     <div class="menu-btn" onclick="toggleMenu(this)">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
 </header>
 
-<section class="hero">
-    <h1>Welcome to Government Polytechnic College</h1>
-    <p>Providing quality technical education since 1985</p>
+<!-- ================= HERO (ABOUT + PRINCIPAL MESSAGE) ================= -->
+<section class="hero hero-detailed">
+
+    <div class="hero-content">
+        <h1>Government Polytechnic College, Bathinda</h1>
+
+        <p class="hero-description">
+            Government Polytechnic College, Bathinda was established in the year
+            <strong>1985</strong> with the aim of imparting quality technical education
+            in the field of Engineering and Technology. The institution caters to
+            students of southern Punjab and is located on Bibiwala Road, approximately
+            3 km from Bathinda Bus Stand and 4.2 km from Bathinda Railway Junction.
+        </p>
+
+        <p class="hero-description">
+            The college is spread over a lush green campus of <strong>22 acres</strong>
+            and is committed to academic excellence, practical-based learning,
+            and holistic student development.
+        </p>
+    </div>
+
+    <!-- PRINCIPAL MESSAGE CARD -->
+    <div class="principal-card">
+
+        <div class="principal-header">
+            <img src="Images/principal.jpg" alt="Principal">
+            <div>
+                <h3>Principal’s Message</h3>
+                <span>Dr. Anuja Pupneja</span>
+                <small>Principal, GPC Bathinda</small>
+            </div>
+        </div>
+
+        <p>
+            Government Polytechnic College, Bathinda strives to impart practical and
+            quality education along with sufficient job-oriented skills. The institution
+            has been honored with multiple awards by the Government of Punjab for
+            excellence in technical education.
+        </p>
+
+        <p>
+            We strongly emphasize the overall personality development of every student
+            by encouraging participation in academics, sports, and co-curricular
+            activities, enabling them to become competent professionals and
+            responsible citizens.
+        </p>
+
+    </div>
+
 </section>
 
-<!-- ===== LATEST NEWS ===== -->
+<!-- ================= LATEST NEWS ================= -->
 <section class="latest-news-wrapper">
-    <div class="latest-news-glass" id="newsGlass">
+    <div class="latest-news-glass">
 
         <div class="latest-news-title">Latest News</div>
 
-        <div class="latest-news-container" id="newsScroll">
-            <ul class="latest-news-list" id="newsList"></ul>
+        <div class="latest-news-container">
+            <ul class="latest-news-list" id="newsList">
+                <!-- News injected by JS -->
+            </ul>
         </div>
 
     </div>
 </section>
 
+<!-- ================= STUDENT CORNER ================= -->
 <section class="section">
     <h2>Student Corner</h2>
+
     <div class="cards">
         <div class="card">Academic Calendar</div>
         <div class="card">Results</div>
@@ -59,6 +113,7 @@
     </div>
 </section>
 
+<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
 
     <div class="footer-top">
@@ -83,7 +138,7 @@
             <a href="#">Results</a>
             <a href="#">Placements</a>
             <a href="#">Internship Portal</a>
-            <a href="#">Notices</a>
+            <a href="notices.html">Notices</a>
         </div>
 
         <div class="footer-col">
@@ -95,7 +150,10 @@
 
         <div class="footer-col footer-map">
             <h4>Locate Us</h4>
-            <iframe src="https://www.google.com/maps?q=Government%20Polytechnic%20College%20Bathinda&output=embed"></iframe>
+            <iframe
+                src="https://www.google.com/maps?q=Government%20Polytechnic%20College%20Bathinda&output=embed"
+                loading="lazy">
+            </iframe>
         </div>
     </div>
 
@@ -105,6 +163,8 @@
     </div>
 </footer>
 
+<!-- ================= SCRIPT ================= -->
 <script src="script.js"></script>
+
 </body>
 </html>
