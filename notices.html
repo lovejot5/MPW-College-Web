@@ -33,75 +33,72 @@
 
 <section class="hero">
     <h1>Official Notices</h1>
-    <p>Latest announcements and circulars</p>
+    <p>Latest announcements & circulars</p>
 </section>
 
-<section class="section">
-    <ul class="news" id="noticeList"></ul>
+<section class="section" id="noticeContainer">
+    <!-- Notices injected by JS -->
 </section>
 
 <footer class="site-footer">
-
     <div class="footer-top">
-        <img src="Images/logo.jpeg" alt="College Logo">
+        <img src="Images/logo.jpeg">
         <h3>Government Polytechnic College</h3>
         <p>Bathinda</p>
-    </div>
-
-    <div class="footer-container">
-        <div class="footer-col">
-            <h4>Navigation</h4>
-            <a href="index.html">Home</a>
-            <a href="about.html">About</a>
-            <a href="departments.html">Departments</a>
-            <a href="student.html">Student Corner</a>
-            <a href="contact.html">Contact</a>
-        </div>
-
-        <div class="footer-col">
-            <h4>Important Links</h4>
-            <a href="#">Admissions</a>
-            <a href="#">Results</a>
-            <a href="#">Placements</a>
-            <a href="#">Internship Portal</a>
-            <a href="#">Notices</a>
-        </div>
-
-        <div class="footer-col">
-            <h4>Contact</h4>
-            <p>Bibi Wala Road, Bathinda</p>
-            <p>gpcbathinda@punjab.gov.in</p>
-            <p>0164-2246394</p>
-        </div>
-
-        <div class="footer-col footer-map">
-            <h4>Locate Us</h4>
-            <iframe
-                src="https://www.google.com/maps?q=Government%20Polytechnic%20College%20Bathinda&output=embed"
-                loading="lazy">
-            </iframe>
-        </div>
     </div>
 
     <div class="footer-bottom">
         MPW Project — Designed & Developed by  
         <strong>Shagun (CSE 4th Sem)</strong>
     </div>
-
 </footer>
 
 <script src="script.js"></script>
+
 <script>
 document.addEventListener("DOMContentLoaded", () => {
+
     fetch("data/notices.json")
         .then(res => res.json())
         .then(data => {
-            const list = document.getElementById("noticeList");
-            list.innerHTML = "";
-            data.forEach(item => {
-                const li = document.createElement("li");
-                li.textContent = item.title;
-                list.appendChild(li);
+
+            const container = document.getElementById("noticeContainer");
+            container.innerHTML = "";
+
+            data.forEach(notice => {
+
+                const card = document.createElement("div");
+                card.className = "notice-card";
+
+                card.innerHTML = `
+                    <div class="notice-header">
+                        <img src="${notice.author.icon}">
+                        <div>
+                            <strong>${notice.author.name}</strong>
+                            <span>${new Date(notice.date).toDateString()}</span>
+                        </div>
+                        ${notice.isNew ? '<span class="badge-new">NEW</span>' : ''}
+                    </div>
+
+                    <h3>${notice.title}</h3>
+                    <p>${notice.description}</p>
+
+                    ${notice.images.length ? `
+                        <div class="notice-images">
+                            ${notice.images.map(img => `<img src="${img}">`).join("")}
+                        </div>` : ""
+                    }
+
+                    ${notice.buttons.length ? `
+                        <div class="notice-actions">
+                            ${notice.buttons.map(btn =>
+                                `<a href="${btn.url}" target="_blank">${btn.text}</a>`
+                            ).join("")}
+                        </div>` : ""
+                    }
+                `;
+
+                container.appendChild(card);
             });
         });
 });
