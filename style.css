@@ -345,22 +345,34 @@ header ul {
     }
 }
 
-/* ================= MOBILE ACTIVE HIGHLIGHT FIX ================= */
+/* ================= MOBILE MENU – FULL ROW ACTIVE FIX ================= */
 @media (max-width: 768px) {
 
-    /* Remove underline on mobile */
-    .nav-link.active::after {
-        display: none;
+    /* Make each menu item full-width */
+    header ul li {
+        width: 100%;
     }
 
-    /* Highlight full row on mobile */
+    .nav-link {
+        display: block;              /* IMPORTANT */
+        width: 100%;                 /* FULL ROW */
+        padding: 14px 16px;
+        border-radius: 12px;
+        margin-bottom: 6px;          /* SPACE BETWEEN SECTIONS */
+        box-sizing: border-box;
+    }
+
+    /* Active page – highlight FULL ROW */
     .nav-link.active {
         background: var(--bg-header);
-        border-radius: 12px;
         font-weight: 600;
     }
-}
 
+    /* Ensure no underline on mobile */
+    .nav-link::after {
+        display: none;
+    }
+}
 /* ================= REMOVE ALL BLUE TAP / SELECTION ================= */
 * {
     -webkit-tap-highlight-color: transparent;
