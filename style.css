@@ -162,50 +162,58 @@ header ul {
 
 /* ================= LATEST NEWS ================= */
 
-/* Centered title (floating, NOT scrolling) */
-.news-title-card {
-    max-width: 1100px;
-    margin: 0 auto 12px;
-    padding: 14px 20px;
-    text-align: center;
+/* ================= NEWS SECTION ================= */
 
-    background: rgba(255,255,255,0.7);
-    backdrop-filter: blur(8px);
+.news-section {
+    padding: 16px 20px 28px;
+}
+
+/* Unified container (mobile + desktop) */
+.news-glass {
+    width: 100%;
+    max-width: 1000px;          /* 👈 DESKTOP WIDTH FIX */
+    margin: 0 auto;
+
+    padding: 18px 22px 12px;
+    height: 220px;              /* 👈 controls 4–5 items */
+
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
     border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
 
-    font-size: 20px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+/* Centered heading INSIDE container */
+.news-heading {
+    text-align: center;
+    font-size: 18px;
     font-weight: 600;
+    margin-bottom: 12px;
     color: #3b2a1a;
 }
 
-/* News container (ONLY this scrolls) */
-.news-glass {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 10px 20px;
-
-    height: 210px;           /* 👈 shows 4–5 items */
-    overflow: hidden;
-
-    background: rgba(255,255,255,0.55);
-    backdrop-filter: blur(10px);
-    border-radius: 22px;
-    border: 1px solid rgba(255,255,255,0.6);
-}
-
-/* Scrolling list */
+/* News list */
 .news-list {
     list-style: none;
-    animation: scrollNews 18s linear infinite;
+    padding: 0;
+    margin: 0;
+
+    animation: scrollNews 22s linear infinite;
 }
 
-@keyframes scrollNews {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-50%); }
+/* Pause animation */
+.news-glass.paused .news-list {
+    animation-play-state: paused;
 }
 
+/* Individual item */
 .news-item {
-    padding: 10px 0;
+    padding: 10px 6px;
     border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 
@@ -215,20 +223,29 @@ header ul {
 
 .news-title {
     font-weight: 500;
+    line-height: 1.35;
 }
 
 .news-meta {
     font-size: 11px;
     opacity: 0.7;
+    margin-top: 4px;
 }
 
+/* NEW badge */
 .badge-new {
-    background: var(--theme-accent);
+    background: #7b4b1f;
     color: #fff;
     font-size: 10px;
     padding: 2px 6px;
     border-radius: 6px;
     margin-left: 6px;
+}
+
+/* Smooth infinite scroll */
+@keyframes scrollNews {
+    0%   { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
 }
 
 /* ================= STUDENT CORNER ================= */
@@ -292,11 +309,17 @@ header ul {
         display: none;
     }
 
-    /* Mobile news sizing */
     .news-glass {
-        height: 190px;   /* 👈 still limited */
-        padding: 10px 14px;
+        max-width: 100%;
+        height: 200px;       /* 👈 MOBILE NOT TOO TALL */
+        padding: 16px;
     }
+
+    .news-heading {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    
 }
 
 /* ================= REMOVE BLUE TAP ================= */
