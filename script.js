@@ -5,10 +5,12 @@ function toggleMenu(btn) {
 
     menu.classList.toggle("show");
     btn.classList.toggle("active");
+
+    // remove blue focus flash on mobile
     btn.blur();
 }
 
-/* Close menu on outside click */
+/* Close menu when clicking outside */
 document.addEventListener("click", (e) => {
     const menu = document.getElementById("menu");
     const btn = document.querySelector(".menu-btn");
@@ -21,96 +23,122 @@ document.addEventListener("click", (e) => {
     }
 });
 
-/* ================= NEWS AUTO + MANUAL SCROLL ================= */
+/* ================= LATEST NEWS (AUTO + MANUAL SCROLL) ================= */
 document.addEventListener("DOMContentLoaded", () => {
-    const list = document.getElementById("newsList");
-    const scrollBox = document.getElementById("newsScroll");
 
-    if (!list || !scrollBox) return;
+    const list = document.getElementById("newsList");
+    const container = document.querySelector(".latest-news-container");
+
+    if (!list || !container) return;
 
     fetch("data/news.json")
         .then(res => res.json())
         .then(data => {
+
             list.innerHTML = "";
 
             data.forEach(item => {
                 const li = document.createElement("li");
+
                 li.innerHTML = `
                     <a href="${item.url}">
                         <div class="news-title">
                             ${item.title}
-                            ${item.isNew ? `<span class="badge-new">NEW</span>` : ""}
+                            ${item.isNew ? '<span class="badge-new">NEW</span>' : ''}
                         </div>
                         <div class="news-meta">
                             ${new Date(item.date).toDateString()}
                         </div>
                     </a>
                 `;
+
                 list.appendChild(li);
             });
-
-            /* duplicate for infinite scroll */
-            list.innerHTML += list.innerHTML;
+        })
+        .catch(() => {
+            list.innerHTML = `
+                <li>
+                    <div class="news-title">No news available</div>
+                </li>
+            `;
         });
 
-    let pause = false;
+    /* Auto scroll */
+    let autoScroll = null;
+    let userInteracting = false;
 
-    const autoScroll = setInterval(() => {
-        if (pause) return;
+    function startAutoScroll() {
+        autoScroll = setInterval(() => {
+            if (userInteracting) return;
 
-        scrollBox.scrollTop += 1;
-        if (scrollBox.scrollTop >= scrollBox.scrollHeight / 2) {
-            scrollBox.scrollTop = 0;
-        }
-    }, 35);
+            container.scrollTop += 1;
 
-    ["mouseenter", "touchstart"].forEach(evt =>
-        scrollBox.addEventListener(evt, () => pause = true)
-    );
+            if (
+                container.scrollTop + container.clientHeight >=
+                container.scrollHeight - 2
+            ) {
+                container.scrollTop = 0;
+            }
+        }, 40);
+    }
 
-    ["mouseleave", "touchend"].forEach(evt =>
-        scrollBox.addEventListener(evt, () => pause = false)
-    );
+    function stopAutoScroll() {
+        clearInterval(autoScroll);
+    }
+
+    /* Pause on user interaction */
+    container.addEventListener("mouseenter", () => userInteracting = true);
+    container.addEventListener("mouseleave", () => userInteracting = false);
+
+    container.addEventListener("touchstart", () => userInteracting = true);
+    container.addEventListener("touchend", () => userInteracting = false);
+
+    startAutoScroll();
 });
 
 /* ================= NOTICE PAGINATION ================= */
 document.addEventListener("DOMContentLoaded", () => {
+
     const container = document.getElementById("noticeContainer");
     if (!container) return;
 
     fetch("data/notices.json")
         .then(res => res.json())
         .then(data => {
+
             let index = 0;
 
-            function render() {
+            function renderNotice() {
                 const n = data[index];
 
                 container.innerHTML = `
-                    <div class="notice-card fade">
+                    <div class="notice-card">
+
                         <div class="notice-header">
-                            <img src="${n.author.icon}">
+                            <img src="${n.author.icon}" alt="author">
                             <div>
                                 <strong>${n.author.name}</strong><br>
                                 <span>${new Date(n.date).toDateString()}</span>
                             </div>
-                            ${n.isNew ? `<span class="badge-new">NEW</span>` : ""}
+                            ${n.isNew ? '<span class="badge-new">NEW</span>' : ''}
                         </div>
 
                         <h3>${n.title}</h3>
                         <p>${n.description}</p>
 
-                        ${n.images.length ? `
-                        <div class="notice-images">
-                            ${n.images.map(img => `<img src="${img}">`).join("")}
-                        </div>` : ""}
+                        ${n.images && n.images.length ? `
+                            <div class="notice-images">
+                                ${n.images.map(img => `<img src="${img}" alt="">`).join("")}
+                            </div>
+                        ` : ""}
 
-                        ${n.buttons.length ? `
-                        <div class="notice-actions">
-                            ${n.buttons.map(b =>
-                                `<a href="${b.url}" target="_blank">${b.text}</a>`
-                            ).join("")}
-                        </div>` : ""}
+                        ${n.buttons && n.buttons.length ? `
+                            <div class="notice-actions">
+                                ${n.buttons.map(b =>
+                                    `<a href="${b.url}" target="_blank">${b.text}</a>`
+                                ).join("")}
+                            </div>
+                        ` : ""}
 
                         <div class="notice-pagination">
                             <button id="prev" ${index === 0 ? "disabled" : ""}>Previous</button>
@@ -120,15 +148,24 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                 `;
 
-                document.getElementById("prev")?.onclick = () => {
-                    if (index > 0) { index--; render(); }
-                };
+                document.getElementById("prev")?.addEventListener("click", () => {
+                    if (index > 0) {
+                        index--;
+                        renderNotice();
+                    }
+                });
 
-                document.getElementById("next")?.onclick = () => {
-                    if (index < data.length - 1) { index++; render(); }
-                };
+                document.getElementById("next")?.addEventListener("click", () => {
+                    if (index < data.length - 1) {
+                        index++;
+                        renderNotice();
+                    }
+                });
             }
 
-            render();
+            renderNotice();
+        })
+        .catch(() => {
+            container.innerHTML = "<p>No notices available.</p>";
         });
 });
