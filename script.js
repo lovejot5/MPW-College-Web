@@ -5,12 +5,10 @@ function toggleMenu(btn) {
 
     menu.classList.toggle("show");
     btn.classList.toggle("active");
-
-    // remove focus (blue flash fix)
     btn.blur();
 }
 
-/* Close menu when clicking outside */
+/* Close menu on outside click */
 document.addEventListener("click", (e) => {
     const menu = document.getElementById("menu");
     const btn = document.querySelector(".menu-btn");
@@ -23,155 +21,114 @@ document.addEventListener("click", (e) => {
     }
 });
 
-
 /* ================= NEWS AUTO + MANUAL SCROLL ================= */
 document.addEventListener("DOMContentLoaded", () => {
-
     const list = document.getElementById("newsList");
-    const container = document.getElementById("newsGlass");
+    const scrollBox = document.getElementById("newsScroll");
 
-    if (!list || !container) return;
+    if (!list || !scrollBox) return;
 
-    /* Load news */
     fetch("data/news.json")
         .then(res => res.json())
         .then(data => {
-
             list.innerHTML = "";
 
             data.forEach(item => {
                 const li = document.createElement("li");
-
                 li.innerHTML = `
                     <a href="${item.url}">
                         <div class="news-title">
                             ${item.title}
-                            ${item.isNew ? '<span class="badge-new">NEW</span>' : ''}
+                            ${item.isNew ? `<span class="badge-new">NEW</span>` : ""}
                         </div>
                         <div class="news-meta">
                             ${new Date(item.date).toDateString()}
                         </div>
                     </a>
                 `;
-
                 list.appendChild(li);
             });
-        })
-        .catch(() => {
-            list.innerHTML = `
-                <li>
-                    <div class="news-title">No news available</div>
-                </li>
-            `;
+
+            /* duplicate for infinite scroll */
+            list.innerHTML += list.innerHTML;
         });
 
-    /* Auto scroll logic */
-    let autoScrollInterval = null;
-    let userInteracting = false;
+    let pause = false;
 
-    function startAutoScroll() {
-        autoScrollInterval = setInterval(() => {
-            if (userInteracting) return;
+    const autoScroll = setInterval(() => {
+        if (pause) return;
 
-            container.scrollTop += 1;
+        scrollBox.scrollTop += 1;
+        if (scrollBox.scrollTop >= scrollBox.scrollHeight / 2) {
+            scrollBox.scrollTop = 0;
+        }
+    }, 35);
 
-            if (
-                container.scrollTop + container.clientHeight >=
-                container.scrollHeight - 2
-            ) {
-                container.scrollTop = 0;
-            }
-        }, 40); // smooth & slow
-    }
+    ["mouseenter", "touchstart"].forEach(evt =>
+        scrollBox.addEventListener(evt, () => pause = true)
+    );
 
-    function stopAutoScroll() {
-        clearInterval(autoScrollInterval);
-    }
-
-    /* Pause on interaction */
-    container.addEventListener("mouseenter", () => {
-        userInteracting = true;
-    });
-
-    container.addEventListener("mouseleave", () => {
-        userInteracting = false;
-    });
-
-    container.addEventListener("touchstart", () => {
-        userInteracting = true;
-    });
-
-    container.addEventListener("touchend", () => {
-        userInteracting = false;
-    });
-
-    startAutoScroll();
+    ["mouseleave", "touchend"].forEach(evt =>
+        scrollBox.addEventListener(evt, () => pause = false)
+    );
 });
 
 /* ================= NOTICE PAGINATION ================= */
 document.addEventListener("DOMContentLoaded", () => {
+    const container = document.getElementById("noticeContainer");
+    if (!container) return;
 
     fetch("data/notices.json")
         .then(res => res.json())
         .then(data => {
-
             let index = 0;
-            const container = document.getElementById("noticeContainer");
 
-            function renderNotice() {
+            function render() {
                 const n = data[index];
 
                 container.innerHTML = `
-                    <div class="notice-card">
+                    <div class="notice-card fade">
                         <div class="notice-header">
                             <img src="${n.author.icon}">
                             <div>
                                 <strong>${n.author.name}</strong><br>
                                 <span>${new Date(n.date).toDateString()}</span>
                             </div>
-                            ${n.isNew ? '<span class="badge-new">NEW</span>' : ''}
+                            ${n.isNew ? `<span class="badge-new">NEW</span>` : ""}
                         </div>
 
                         <h3>${n.title}</h3>
                         <p>${n.description}</p>
 
                         ${n.images.length ? `
-                            <div class="notice-images">
-                                ${n.images.map(img => `<img src="${img}">`).join("")}
-                            </div>` : ""
-                        }
+                        <div class="notice-images">
+                            ${n.images.map(img => `<img src="${img}">`).join("")}
+                        </div>` : ""}
 
                         ${n.buttons.length ? `
-                            <div class="notice-actions">
-                                ${n.buttons.map(b =>
-                                    `<a href="${b.url}" target="_blank">${b.text}</a>`
-                                ).join("")}
-                            </div>` : ""
-                        }
+                        <div class="notice-actions">
+                            ${n.buttons.map(b =>
+                                `<a href="${b.url}" target="_blank">${b.text}</a>`
+                            ).join("")}
+                        </div>` : ""}
 
                         <div class="notice-pagination">
-                            <button ${index === 0 ? "disabled" : ""} id="prev">Previous</button>
+                            <button id="prev" ${index === 0 ? "disabled" : ""}>Previous</button>
                             <span>${index + 1} / ${data.length}</span>
-                            <button ${index === data.length - 1 ? "disabled" : ""} id="next">Next</button>
+                            <button id="next" ${index === data.length - 1 ? "disabled" : ""}>Next</button>
                         </div>
                     </div>
                 `;
 
-                document.getElementById("prev")?.addEventListener("click", () => {
-                    if (index > 0) {
-                        index--;
-                        renderNotice();
-                    }
-                });
+                document.getElementById("prev")?.onclick = () => {
+                    if (index > 0) { index--; render(); }
+                };
 
-                document.getElementById("next")?.addEventListener("click", () => {
-                    if (index < data.length - 1) {
-                        index++;
-                        renderNotice();
-                    }
-                });
+                document.getElementById("next")?.onclick = () => {
+                    if (index < data.length - 1) { index++; render(); }
+                };
             }
 
-            renderNotice();
+            render();
         });
 });
