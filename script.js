@@ -7,17 +7,37 @@ function toggleMenu(btn) {
     btn.blur();
 }
 
+document.addEventListener("click", (e) => {
+    const menu = document.getElementById("menu");
+    const btn = document.querySelector(".menu-btn");
+
+    if (!menu || !btn) return;
+
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+        menu.classList.remove("show");
+        btn.classList.remove("active");
+    }
+});
+
+/* ================= LOAD NEWS ================= */
 document.addEventListener("DOMContentLoaded", () => {
+    loadNews();
+});
+
+function loadNews() {
     fetch("data/news.json")
         .then(res => res.json())
         .then(data => {
-            const list = document.getElementById("newsList");
-            if (!list) return;
-            list.innerHTML = "";
+            const newsList = document.getElementById("newsList");
+            if (!newsList) return;
+
+            newsList.innerHTML = "";
+
             data.forEach(item => {
                 const li = document.createElement("li");
                 li.textContent = item.title;
-                list.appendChild(li);
+                newsList.appendChild(li);
             });
-        });
-});
+        })
+        .catch(err => console.error("News load error:", err));
+}
