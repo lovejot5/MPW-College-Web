@@ -24,7 +24,7 @@ const newsGlass = document.getElementById("newsGlass");
 let startY = 0;
 
 // ===== FETCH NEWS =====
-fetch("news.json")
+fetch("data/news.json")
     .then(res => res.json())
     .then(data => {
         const now = new Date();
