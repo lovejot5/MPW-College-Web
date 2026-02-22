@@ -23,23 +23,22 @@ document.addEventListener("click", (e) => {
     }
 });
 
-/* ================= NEWS SCROLLER ================= */
+/* ================= NEWS AUTO + MANUAL SCROLL ================= */
 document.addEventListener("DOMContentLoaded", () => {
 
-    const newsList = document.getElementById("newsList");
-    const newsGlass = document.getElementById("newsGlass");
+    const list = document.getElementById("newsList");
+    const container = document.getElementById("newsGlass");
 
-    if (!newsList || !newsGlass) return;
+    if (!list || !container) return;
 
     fetch("data/news.json")
         .then(res => res.json())
         .then(data => {
 
-            newsList.innerHTML = "";
+            list.innerHTML = "";
 
             data.forEach(item => {
                 const li = document.createElement("li");
-
                 li.innerHTML = `
                     <a href="${item.url}">
                         <div class="news-title">
@@ -51,28 +50,49 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </a>
                 `;
-
-                newsList.appendChild(li);
+                list.appendChild(li);
             });
-
-            /* Duplicate for infinite loop */
-            newsList.innerHTML += newsList.innerHTML;
-        })
-        .catch(() => {
-            newsList.innerHTML = `
-                <li>
-                    <div class="news-title">No news available</div>
-                </li>
-            `;
         });
 
-    /* Pause on hover (desktop only) */
-    newsGlass.addEventListener("mouseenter", () => {
-        newsGlass.classList.add("paused");
+    let autoScroll;
+    let isUserInteracting = false;
+
+    function startAutoScroll() {
+        autoScroll = setInterval(() => {
+            if (isUserInteracting) return;
+
+            container.scrollTop += 1;
+
+            if (
+                container.scrollTop + container.clientHeight >=
+                container.scrollHeight - 5
+            ) {
+                container.scrollTop = 0;
+            }
+        }, 40); // slow & smooth
+    }
+
+    function stopAutoScroll() {
+        clearInterval(autoScroll);
+    }
+
+    /* Mouse */
+    container.addEventListener("mouseenter", () => {
+        isUserInteracting = true;
     });
 
-    newsGlass.addEventListener("mouseleave", () => {
-        newsGlass.classList.remove("paused");
+    container.addEventListener("mouseleave", () => {
+        isUserInteracting = false;
     });
 
+    /* Touch */
+    container.addEventListener("touchstart", () => {
+        isUserInteracting = true;
+    });
+
+    container.addEventListener("touchend", () => {
+        isUserInteracting = false;
+    });
+
+    startAutoScroll();
 });
