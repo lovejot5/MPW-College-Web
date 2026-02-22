@@ -76,31 +76,24 @@ header ul {
     gap: 14px;
 }
 
-/* FULL ROW NAV ITEM */
-.nav-link {
-    display: block;
-    padding: 8px 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    color: var(--text-dark);
-    font-weight: 500;
-}
+/* ================= NAV LINK FULL ROW HIGHLIGHT ================= */
 
-/* Hover full row */
+/* Hover → full row */
 .nav-link:hover {
-    background: rgba(0,0,0,0.06);
+    background: rgba(0, 0, 0, 0.06);
 }
 
-/* Active full row (NO underline) */
+/* Active page → full row highlight */
 .nav-link.active {
     background: var(--bg-header);
     font-weight: 600;
 }
 
-/* REMOVE underline completely */
+/* REMOVE underline completely (desktop + mobile) */
 .nav-link::after,
 .nav-link.active::after {
-    display: none;
+    content: none !important;
+    display: none !important;
 }
 
 /* ================= HAMBURGER ================= */
