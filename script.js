@@ -23,6 +23,7 @@ document.addEventListener("click", (e) => {
     }
 });
 
+
 /* ================= NEWS AUTO + MANUAL SCROLL ================= */
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -31,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!list || !container) return;
 
+    /* Load news */
     fetch("data/news.json")
         .then(res => res.json())
         .then(data => {
@@ -39,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             data.forEach(item => {
                 const li = document.createElement("li");
+
                 li.innerHTML = `
                     <a href="${item.url}">
                         <div class="news-title">
@@ -50,48 +53,56 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </a>
                 `;
+
                 list.appendChild(li);
             });
+        })
+        .catch(() => {
+            list.innerHTML = `
+                <li>
+                    <div class="news-title">No news available</div>
+                </li>
+            `;
         });
 
-    let autoScroll;
-    let isUserInteracting = false;
+    /* Auto scroll logic */
+    let autoScrollInterval = null;
+    let userInteracting = false;
 
     function startAutoScroll() {
-        autoScroll = setInterval(() => {
-            if (isUserInteracting) return;
+        autoScrollInterval = setInterval(() => {
+            if (userInteracting) return;
 
             container.scrollTop += 1;
 
             if (
                 container.scrollTop + container.clientHeight >=
-                container.scrollHeight - 5
+                container.scrollHeight - 2
             ) {
                 container.scrollTop = 0;
             }
-        }, 40); // slow & smooth
+        }, 40); // smooth & slow
     }
 
     function stopAutoScroll() {
-        clearInterval(autoScroll);
+        clearInterval(autoScrollInterval);
     }
 
-    /* Mouse */
+    /* Pause on interaction */
     container.addEventListener("mouseenter", () => {
-        isUserInteracting = true;
+        userInteracting = true;
     });
 
     container.addEventListener("mouseleave", () => {
-        isUserInteracting = false;
+        userInteracting = false;
     });
 
-    /* Touch */
     container.addEventListener("touchstart", () => {
-        isUserInteracting = true;
+        userInteracting = true;
     });
 
     container.addEventListener("touchend", () => {
-        isUserInteracting = false;
+        userInteracting = false;
     });
 
     startAutoScroll();
