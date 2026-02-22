@@ -1,6 +1,27 @@
 [
-  { "title": "Admissions Open for Diploma Courses 2025" },
-  { "title": "Annual Prize Distribution Ceremony" },
-  { "title": "Internship Opportunities for Final Year Students" },
-  { "title": "Semester Examination Schedule Released" }
+  {
+    "title": "Admissions Open for Session 2025–26",
+    "url": "news/admission-2025.html",
+    "date": "2025-02-18T09:00:00"
+  },
+  {
+    "title": "Diploma Examination Schedule Released",
+    "url": "news/exam-schedule.html",
+    "date": "2025-02-15T14:30:00"
+  },
+  {
+    "title": "Internship Drive for Final Year Students",
+    "url": "news/internship-drive.html",
+    "date": "2025-02-10T11:00:00"
+  },
+  {
+    "title": "Scholarship Forms Now Available",
+    "url": "news/scholarship.html",
+    "date": "2025-02-05T10:00:00"
+  },
+  {
+    "title": "AI & Robotics Workshop on 10 March",
+    "url": "news/workshop-ai.html",
+    "date": "2025-02-01T16:00:00"
+  }
 ]
