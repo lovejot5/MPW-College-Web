@@ -1,22 +1,6 @@
 [
-    {
-        "id": 1,
-        "title": "Admissions Open for Diploma Courses 2025"
-    },
-    {
-        "id": 2,
-        "title": "Annual Prize Distribution Ceremony Scheduled"
-    },
-    {
-        "id": 3,
-        "title": "Internship Opportunities for Final Year Students"
-    },
-    {
-        "id": 4,
-        "title": "Campus Recruitment Drive Announced"
-    },
-    {
-        "id": 5,
-        "title": "Semester Exams Timetable Released"
-    }
+  { "title": "Admissions Open for Diploma Courses 2025" },
+  { "title": "Annual Prize Distribution Ceremony" },
+  { "title": "Internship Opportunities for Final Year Students" },
+  { "title": "Semester Examination Schedule Released" }
 ]
