@@ -1,6 +1,45 @@
 [
-  { "title": "Notice regarding Internal Assessment" },
-  { "title": "Holiday declared on Government Order" },
-  { "title": "Scholarship form submission deadline extended" },
-  { "title": "Workshop on Emerging Technologies" }
+  {
+    "id": 1,
+    "title": "Admissions Open for Session 2025–26",
+    "description": "Applications are invited for Diploma courses for the academic year 2025–26. Interested candidates must apply before the deadline.",
+    "images": [
+      "Images/notice1.jpg",
+      "Images/notice1b.jpg"
+    ],
+    "author": {
+      "name": "Administration Office",
+      "icon": "Images/logo.jpeg"
+    },
+    "date": "2025-02-18",
+    "isNew": true,
+    "buttons": [
+      {
+        "text": "Apply Now",
+        "url": "https://punjab.gov.in"
+      },
+      {
+        "text": "Download Prospectus",
+        "url": "docs/prospectus.pdf"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Diploma Examination Schedule Released",
+    "description": "The examination schedule for all diploma courses has been published. Students are advised to check carefully.",
+    "images": [],
+    "author": {
+      "name": "Examination Cell",
+      "icon": "Images/logo.jpeg"
+    },
+    "date": "2025-02-15",
+    "isNew": false,
+    "buttons": [
+      {
+        "text": "View Schedule",
+        "url": "docs/exam-schedule.pdf"
+      }
+    ]
+  }
 ]
