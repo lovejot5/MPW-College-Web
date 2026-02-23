@@ -42,7 +42,7 @@ a {
 /* ================= HEADER ================= */
 header {
     background: var(--bg-header);
-    padding: 14px 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -81,18 +81,20 @@ header {
 header ul {
     list-style: none;
     display: flex;
-    gap: 22px;
+    gap: 18px;
 }
 
 .nav-link {
     position: relative;
-    padding: 8px 16px;
-    border-radius: 14px;
+    padding: 6px 10px;
     font-weight: 500;
-    transition: color .2s ease;
 }
 
-/* underline (desktop) */
+.nav-link:hover {
+    color: var(--accent);
+}
+
+/* Desktop active underline */
 .nav-link.active {
     color: var(--accent);
     font-weight: 600;
@@ -101,10 +103,9 @@ header ul {
 .nav-link.active::after {
     content: "";
     position: absolute;
-    left: 50%;
-    bottom: -8px;
-    transform: translateX(-50%);
-    width: 70%;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
     height: 3px;
     background: var(--accent);
     border-radius: 999px;
@@ -143,22 +144,17 @@ header ul {
     top:9px;
 }
 
-/* ================= SECTION BASE ================= */
+/* ================= PAGE SECTIONS ================= */
 .section {
-    max-width: 1100px;
-    margin: 0 auto 48px;
+    max-width: 900px;
+    margin: 0 auto 64px;
     padding: 0 20px;
 }
 
-/* ================= HERO GRID ================= */
-.hero-detailed {
-    max-width: 1100px;
-    margin: 0 auto 40px;
-    padding: 28px 20px;
-    display: grid;
-    grid-template-columns: 1.3fr 1fr;
-    gap: 32px;
-    align-items: start;
+/* ================= HERO ================= */
+.hero {
+    padding: 48px 20px 40px;
+    text-align: center;
 }
 
 .hero h1 {
@@ -170,7 +166,16 @@ header ul {
     font-size: 14.5px;
     line-height: 1.7;
     color: var(--text-light);
-    margin-bottom: 10px;
+}
+
+/* Force vertical layout everywhere */
+.hero-detailed {
+    max-width: 900px;
+    margin: 0 auto 64px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
 }
 
 /* ================= PRINCIPAL CARD ================= */
@@ -219,8 +224,8 @@ header ul {
 
 /* ================= LATEST NEWS ================= */
 .latest-news-wrapper {
-    max-width: 1100px;
-    margin: 0 auto 48px;
+    max-width: 760px;
+    margin: 0 auto 64px;
     padding: 0 20px;
 }
 
@@ -239,21 +244,18 @@ header ul {
 
 .latest-news-container {
     max-height: 220px;
-    overflow-y: auto;
-    scroll-behavior: smooth;
+    overflow: hidden;
+    position: relative;
 }
 
 .latest-news-list {
     list-style: none;
+    animation: newsScroll 25s linear infinite;
 }
 
 .latest-news-list li {
     padding: 14px 0;
     border-bottom: 1px solid #eee;
-}
-
-.latest-news-list li:last-child {
-    border-bottom: none;
 }
 
 .news-meta {
@@ -270,11 +272,20 @@ header ul {
     margin-left: 6px;
 }
 
+/* Infinite smooth loop */
+@keyframes newsScroll {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-50%); }
+}
+
 /* ================= STUDENT CORNER ================= */
 .student-corner {
-    max-width: 1100px;
-    margin: 0 auto 60px;
-    padding: 32px 20px;
+    max-width: 760px;
+    margin: 0 auto 80px;
+    padding: 36px 20px;
+    background: var(--bg-card);
+    border-radius: 26px;
+    border: 1px solid var(--border-soft);
     text-align: center;
 }
 
@@ -305,37 +316,24 @@ header ul {
     margin-top: auto;
 }
 
-.footer-top {
-    text-align: center;
-    padding: 30px 20px;
-}
-
-.footer-top img {
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    background: #fff;
-    padding: 6px;
-    margin-bottom: 10px;
-}
-
 .footer-container {
     max-width: 1100px;
     margin: auto;
-    padding: 24px;
+    padding: 32px 20px;
     display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 24px;
+    grid-template-columns: repeat(3,1fr);
+    gap: 32px;
 }
 
 .footer-container h4 {
     color: #fff;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .footer-container a,
 .footer-container p {
     font-size: 13px;
+    line-height: 1.6;
 }
 
 .footer-map iframe {
@@ -349,6 +347,7 @@ header ul {
     text-align: center;
     padding: 16px;
     font-size: 12px;
+    border-top: 1px solid rgba(255,255,255,.08);
 }
 
 /* ================= MOBILE ================= */
@@ -358,14 +357,15 @@ header ul {
         display: block;
     }
 
-    /* FLOATING MENU (OLD STYLE) */
+    /* Floating menu – does NOT push content */
     header ul {
         display: none;
         position: absolute;
         top: 64px;
         right: 16px;
         width: 240px;
-        background: #fff;
+        background: rgba(255,255,255,.96);
+        backdrop-filter: blur(12px);
         flex-direction: column;
         padding: 14px;
         border-radius: 18px;
@@ -382,10 +382,10 @@ header ul {
         width: 100%;
         padding: 14px 16px;
         border-radius: 14px;
-        font-size: 15px;
+        font-size: 16px;
     }
 
-    /* FULL ROW HIGHLIGHT */
+    /* Full-row highlight */
     .nav-link.active {
         background: var(--accent-soft);
         color: var(--accent);
@@ -395,16 +395,8 @@ header ul {
         display: none;
     }
 
-    .hero-detailed {
-        grid-template-columns: 1fr;
-        padding: 24px 20px;
-    }
-
     .footer-container {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .footer-map {
-        grid-column: 1 / -1;
+        grid-template-columns: 1fr;
+        gap: 24px;
     }
 }
