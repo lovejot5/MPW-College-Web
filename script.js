@@ -31,27 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!list || !container) return;
 
     fetch("data/news.json")
-        .then(res => res.json())
-        .then(data => {
+  .then(res => res.json())
+  .then(data => {
 
-            // duplicate list for seamless loop
-            const fullData = [...data, ...data];
+    list.innerHTML = "";
 
-            list.innerHTML = "";
+    const allNews = [...data, ...data]; // duplicate once
 
-            fullData.forEach(item => {
-                const li = document.createElement("li");
-                li.innerHTML = `
-                    <div class="news-title">
-                        ${item.title}
-                        ${item.isNew ? '<span class="badge-new">NEW</span>' : ''}
-                    </div>
-                    <div class="news-meta">
-                        ${new Date(item.date).toDateString()}
-                    </div>
-                `;
-                list.appendChild(li);
-            });
+    allNews.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+            <div class="news-title">
+                ${item.title}
+                ${item.isNew ? '<span class="badge-new">NEW</span>' : ''}
+            </div>
+            <div class="news-meta">
+                ${new Date(item.date).toDateString()}
+            </div>
+        `;
+        list.appendChild(li);
+    });
+});
 
             let scrollSpeed = 0.4;
 
