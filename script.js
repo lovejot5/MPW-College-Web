@@ -23,9 +23,8 @@ document.addEventListener("click", (e) => {
     }
 });
 
-/* ================= LATEST NEWS (AUTO + MANUAL SCROLL) ================= */
+/* ================= LATEST NEWS AUTO LOOP ================= */
 document.addEventListener("DOMContentLoaded", () => {
-
     const list = document.getElementById("newsList");
     const container = document.querySelector(".latest-news-container");
 
@@ -35,66 +34,45 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(data => {
 
+            // duplicate list for seamless loop
+            const fullData = [...data, ...data];
+
             list.innerHTML = "";
 
-            data.forEach(item => {
+            fullData.forEach(item => {
                 const li = document.createElement("li");
-
                 li.innerHTML = `
-                    <a href="${item.url}">
-                        <div class="news-title">
-                            ${item.title}
-                            ${item.isNew ? '<span class="badge-new">NEW</span>' : ''}
-                        </div>
-                        <div class="news-meta">
-                            ${new Date(item.date).toDateString()}
-                        </div>
-                    </a>
+                    <div class="news-title">
+                        ${item.title}
+                        ${item.isNew ? '<span class="badge-new">NEW</span>' : ''}
+                    </div>
+                    <div class="news-meta">
+                        ${new Date(item.date).toDateString()}
+                    </div>
                 `;
-
                 list.appendChild(li);
             });
-        })
-        .catch(() => {
-            list.innerHTML = `
-                <li>
-                    <div class="news-title">No news available</div>
-                </li>
-            `;
-        });
 
-    /* Auto scroll */
-    let autoScroll = null;
-    let userInteracting = false;
+            let scrollSpeed = 0.4;
 
-    function startAutoScroll() {
-        autoScroll = setInterval(() => {
-            if (userInteracting) return;
+            function autoScroll() {
+                container.scrollTop += scrollSpeed;
 
-            container.scrollTop += 1;
-
-            if (
-                container.scrollTop + container.clientHeight >=
-                container.scrollHeight - 2
-            ) {
-                container.scrollTop = 0;
+                if (container.scrollTop >= list.scrollHeight / 2) {
+                    container.scrollTop = 0;
+                }
             }
-        }, 40);
-    }
 
-    function stopAutoScroll() {
-        clearInterval(autoScroll);
-    }
+            let interval = setInterval(autoScroll, 30);
 
-    /* Pause on user interaction */
-    container.addEventListener("mouseenter", () => userInteracting = true);
-    container.addEventListener("mouseleave", () => userInteracting = false);
+            container.addEventListener("mouseenter", () => clearInterval(interval));
+            container.addEventListener("mouseleave", () => interval = setInterval(autoScroll, 30));
 
-    container.addEventListener("touchstart", () => userInteracting = true);
-    container.addEventListener("touchend", () => userInteracting = false);
-
-    startAutoScroll();
+            container.addEventListener("touchstart", () => clearInterval(interval));
+            container.addEventListener("touchend", () => interval = setInterval(autoScroll, 30));
+        });
 });
+
 
 /* ================= NOTICE PAGINATION ================= */
 document.addEventListener("DOMContentLoaded", () => {
